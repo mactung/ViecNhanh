@@ -13,4 +13,15 @@ function init () {
             view.showComponents('welcome page')
         }
     })
+    
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=>{
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+            
+        });
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    
 }
