@@ -73,3 +73,112 @@ select{
     border: 1px dashed #E5E5E5;
 }
 
+/* register page */
+
+.register-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    background: url('../DesManHinh/which-industries-are-filling-jobs-main-image.jpg') center center no-repeat;
+    background-size: cover ;   
+}
+
+.form-register{
+    background: #ffffff;
+    width: 500px;
+}
+
+.form-header h3 {
+    padding: 50px 30px;
+    font-weight: 400px;
+    font-size: 38px;
+    text-align: center;
+}
+
+.form-content{
+    padding: 0px 50px;
+}
+
+.form-content>*{
+    margin-bottom: 10px;
+}
+
+.name-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-wrapper>*{
+    width: calc(50% - 5px);
+}
+
+.form-footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+}
+
+input{
+    width: 100%;
+    height: 38px;
+    padding: 10px;
+    border: 1px solid #ecedec;
+    border-radius: 5px;
+}
+
+.dob-gender-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+#dob-wrapper{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#dob-wrapper>*{
+    margin-right: 5px;
+    align-self: center;
+}
+
+.dob-input{
+    width: 200px;
+}
+
+#gender{
+    width: 70px;
+}
+
+.city-district-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+#city{
+    width: 120px;
+}
+
+#district{
+    width: 120px;
+}
+
+.job-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.job-wrapper>*{
+    width: 120px;
+}
+
+#register-submit-btn{
+    width: 120px;
+    height: 38px;
+    padding: 10px;
+    color: #ffffff;
+    background:#4482ff;
+    border-radius: 5px;
+    border: none;
+}
