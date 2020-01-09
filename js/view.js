@@ -3,7 +3,7 @@ const view = {
 };
 
 view.showComponents = function (name){
-    // name = 'jobSeekerRegister';
+    view.currentComponent = name;
     switch (name) {
         case 'welcome page':{
             let app = document.getElementById('app')
@@ -36,9 +36,7 @@ view.showComponents = function (name){
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeekerRegister;
             let formRegister = document.getElementById('form-register');
-
-            let registerSubmitBtn = document.getElementById('register-submit-btn');
-            registerSubmitBtn.onclick = registerSubmitHandle;
+            formRegister.onsubmit = registerSubmitHandle;
 
             function registerSubmitHandle (event){
                 event.preventDefault();
@@ -49,8 +47,11 @@ view.showComponents = function (name){
                     email : formRegister.email.value,
                     password : formRegister.password.value,
                     mobileNumber : formRegister.mobileNumber.value,
+                    gender : formRegister.gender.value,
+                    dateOfBirth: formRegister.dateOfBirth.value,
                     city : formRegister.city.value,
                     district : formRegister.district.value,
+                    jobs: [formRegister.job1.value, formRegister.job2.value, formRegister.job3.value],
                     permissionUser: 'jobSeeker',
                     
                 }
@@ -87,7 +88,6 @@ view.showComponents = function (name){
                 let validateResults = [
                     view.validate(dataUser.email.includes('@'), 'email-error','Đây không phải email' ),
                     view.validate(dataUser.password === formRegister.confirmPassword, 'email-error','Đây không phải email' ),
-                    view.validate(dataUser.firstName && dataUser.lastName, 'fisrt-error','Điền đầy đủ thông tin' )
                 ]
                 if(allPassed(validateResults)){
                     console.log(dataUser);
@@ -140,7 +140,7 @@ view.setText = function (id,message){
 }
 view.validate = function(condition, idErrTag, message) {
     if(condition){
-        view.setText(idErrorTag, '')
+        view.setText(idErrTag, '')
         return true
     }else{
         view.setText(idErrTag, message)

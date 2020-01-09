@@ -308,3 +308,105 @@ input{
     border-radius: 5px;
     border: none;
 }
+
+/* jobseeker page */
+
+#control-bar-main-content-container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#control-bar{
+    width: 300px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F6EAEA;
+    border-right: solid black 1px;
+}
+
+#avatar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    border-bottom: solid black 1px;
+}
+
+#avatar{
+    width: 50%;
+    align-self: center;
+}
+
+#control-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: #F6EAEA;
+    height: 100vh;
+    width: 100%;
+}
+
+#main-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+#search-bar-filter-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+#search-bar{
+    width: 350px;
+}
+
+#filter-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#filter-container>*{
+    margin-right: 20px;
+}
+
+#tags-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#tags-container span{
+    margin-right: 20px;
+}
+
+#jobs-list-container{
+    background: #F6EAEA;
+    height: 450px;
+    width: 1000px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.job-detail-container{
+    height: 100px;
+    width: 900px;
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+

@@ -4,7 +4,7 @@ controller.register = async function(registerInfor){
     let dataUser = {...registerInfor,
         createdAt: new Date().toISOString(),
         password: null,
-        geoLocation: {latitude, longitude},
+        // geoLocation: {latitude, longitude},
         comments: [],
         rate: 4,
         }
@@ -25,7 +25,7 @@ controller.register = async function(registerInfor){
         )
 
     } catch (err) {
-        view.setText('register-error', err.message)
+        // view.setText('register-error', err.message)
     }
 }
 
@@ -52,11 +52,10 @@ controller.loadInforUser = async function() {
         .collection('users')
         .where('email','==', email)
         .get()
-
+    
     let docs = result.docs
     let user = transformDocs(docs)
     model.saveInforCurrentUser(...user)
-    
 
 }
 

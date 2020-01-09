@@ -41,13 +41,79 @@
     <script src="./js/components.js"></script>
     <script src="./js/controller.js"></script>
     <script src="./js/model.js"></script>
-    <script src="./js/view.js"></script>
+    <!-- <script src="./js/view.js"></script> -->
     <script src="./js/main.js"></script>
 </head>
 <body>
     <div id="app">
-        
+        <div class="nav-bar">
+            <div class="logo">
+    
+            </div>
+    
+            <div class="menu-select">
+                <div class="select-btn active"><span>Tìm người</span></div>
+                <div class="select-btn"><span>Bài đăng</span></div>
+            </div>
             
+                
+            <div class="user-information">
+                <div class="user-avatar"></div>
+                <div class="user-name"></div>
+            </div>
+                
+        </div>
+
+        <div id="control-bar-main-content-container">
+
+            <div id="control-bar">
+                <div id="avatar-container">
+                    <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
+                </div>
+
+                <div id="control-container">
+                    <div id="find-jobs">
+                        <span>Tìm việc</span>
+                    </div>
+                    <div id="personal-info">
+                        <span>Thông tin cá nhân</span>
+                    </div>
+                    <div id="applied-jobs">
+                        <span>Công việc đã chọn</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main-content">
+                <div id="search-bar-filter-container">
+                    <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+                    <div id="filter-container">
+                        <span>Lọc</span>
+                        <select name="filter" id="filter">
+                            <option value="distance">Khoảng cách</option>
+                            <option value="salary">Mức lương</option>
+                        </select>
+                    </div>
+                    
+                    <div id="tags-container">
+                        <span>Tags</span>
+                        <select name="jobs-tags" id="jobs-tags">
+                            <option value="1">Bốc vác</option>
+                            <option value="2">Dọn nhà</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="jobs-list-container">
+                    <div class="job-detail-container">
+
+                    </div>
+                    <div class="job-detail-container"></div>
+                    <div class="job-detail-container"></div>
+                    
+                </div>
+            </div>
+        
+        </div>   
 
 
 
