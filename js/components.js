@@ -62,7 +62,7 @@ components.employerMain = `
 `;
 
 components.welcomePage = `
-<div id="header" class="header">
+<div class="nav-bar">
             <div id="header-left">
                 <span>ViecVat</span>
             </div>
@@ -95,8 +95,70 @@ components.welcomePage = `
             <span>About Us</span>
         </div>
 `
+components.employerRegister = `
+    <section class="register-container">
+                <form id="form-register" class="form-register">
+                    <div class="form-header">
+                        <h3>Sign up</h3>
+                    </div>
+                    <div class="form-content">
+                        <div class="name-wrapper">
+                            <div class="input-wrapper">
+                                <input type="text" name="firstName" placeholder="First Name">
+                                <div id="firstname-error" class="message-error"></div>
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="text" name="lastName" placeholder="Last Name">
+                                <div id="lastname-error" class="message-error"></div>
+                            </div>
+                        </div>
+                
+                        <div class="input-wrapper">
+                            <input type="email" name="email" placeholder="Email">
+                            <div id="email-error" class="message-error"></div>
+                        </div>
+                
+                        <div class="input-wrapper">
+                            <input type="password" name="password" placeholder="Password">
+                            <div id="password-error" class="message-error"></div>
+                        </div>
+                
+                        <div class="input-wrapper">
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                            <div id="confirm-password-error" class="message-error"></div>
+                        </div>
+                        <div id="register-error" class="message-error"></div>
+                        <div id="register-success" class="message-success" style="color: #00ff00"></div>
 
-components.signUpForJobSeeker = `
+                        <div class="input-wrapper">
+                            <input type="tel" name="mobileNumber" id="mobile-number" placeholder="Mobile Number">
+                        </div>
+    
+                        <div class="city-district-wrapper">
+                            <div class="input-wrapper">
+                                <span>Thành phố</span>
+                                <select name="city" id="city">
+                                    <option value="haNoi">Hà Nội</option>
+                                    <option value="tpHCM">TP Hồ Chí Minh</option>
+                                </select>
+                            </div>
+                            <div class="input-wrapper">
+                                <span>Quận/Huyện</span>
+                                <select name="district" id="district">
+                                    <option value="">abc</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-footer">
+                        <a id="register-link" href="#">Already have an account? Login</a>
+                        <button id="register-submit-btn" type="submit">Register</button>
+                    </div>
+                </form>
+                </section>
+`
+components.jobSeekerRegister = `
 <section class="register-container">
             <form id="form-register" class="form-register">
                 <div class="form-header">
@@ -185,66 +247,5 @@ components.signUpForJobSeeker = `
                     <button id="register-submit-btn" type="submit">Register</button>
                 </div>
             </form>
-            </section>`
-
-components.signUpForEmployer = `
-<section class="register-container">
-                <form id="form-register" class="form-register">
-                    <div class="form-header">
-                        <h3>Sign up</h3>
-                    </div>
-                    <div class="form-content">
-                        <div class="name-wrapper">
-                            <div class="input-wrapper">
-                                <input type="text" name="firstname" placeholder="First Name">
-                                <div id="firstname-error" class="message-error"></div>
-                            </div>
-                            <div class="input-wrapper">
-                                <input type="text" name="lastname" placeholder="Last Name">
-                                <div id="lastname-error" class="message-error"></div>
-                            </div>
-                        </div>
-                
-                        <div class="input-wrapper">
-                            <input type="email" name="email" placeholder="Email">
-                            <div id="email-error" class="message-error"></div>
-                        </div>
-                
-                        <div class="input-wrapper">
-                            <input type="password" name="password" placeholder="Password">
-                            <div id="password-error" class="message-error"></div>
-                        </div>
-                
-                        <div class="input-wrapper">
-                            <input type="password" name="confirmPassword" placeholder="Confirm Password">
-                            <div id="confirm-password-error" class="message-error"></div>
-                        </div>
-                        <div id="register-error" class="message-error"></div>
-                        <div id="register-success" class="message-success" style="color: #00ff00"></div>
-
-                        <div class="input-wrapper">
-                            <input type="tel" name="mobile-number" id="mobile-number" placeholder="Mobile Number">
-                        </div>
-    
-                        <div class="city-district-wrapper">
-                            <div class="input-wrapper">
-                                <span>Thành phố</span>
-                                <select name="city" id="city">
-                                    <option value="ha-noi">Hà Nội</option>
-                                    <option value="tphcm">TP Hồ Chí Minh</option>
-                                </select>
-                            </div>
-                            <div class="input-wrapper">
-                                <span>Quận/Huyện</span>
-                                <select name="district" id="district">
-                                    <option value="">abc</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-footer">
-                        <a id="register-link" href="#">Already have an account? Login</a>
-                        <button id="register-submit-btn" type="submit">Register</button>
-                    </div>
-                </form>
-                </section>`
+            </section>
+            `
