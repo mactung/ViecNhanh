@@ -60,3 +60,38 @@ components.employerMain = `
     </div>
         
 `;
+
+components.welcomePage = `
+<div id="header" class="header">
+            <div id="header-left">
+                <span>ViecVat</span>
+            </div>
+            <div id="header-right">
+                <a href="#">Đăng kí</a>
+                <a href="#">Đăng nhập</a>
+            </div>
+        </div>
+        <div id="content">
+            <div id="option-wrapper">
+                <div id="employer-container">
+                    <div id="employer-title">
+                        <div class="sign-up-btn" id="employer-sign-up-btn">Bạn đang tìm người làm? <br> Tìm ngay !!!</div>
+                    </div> 
+                </div>
+                <div id="job-seeker-container">
+                    <div id="job-seeker-title">
+                        <div class="sign-up-btn" id="job-seeker-sign-up-btn">Bạn đang tìm việc? <br> Đăng kí ngay !!!</div>
+                    </div>
+                    
+                </div>
+
+            </div>
+            
+            <div id="already-have-account">
+                <button id="already-have-account-btn">Already have an account? Sign in</button>
+            </div>   
+        </div>
+        <div id="footer">
+            <span>About Us</span>
+        </div>
+`

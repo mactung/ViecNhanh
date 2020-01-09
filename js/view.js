@@ -1,10 +1,13 @@
-const view = {};
+const view = {
+    currentComponent : null,
+};
 
 view.showComponents = function (name){
+    
     switch (name) {
-        case 'home page':{
+        case 'welcome page':{
             let app = document.getElementById('app')
-            app.innerHTML = components.homePage
+            app.innerHTML = components.welcomePage
             break;
         }
         case 'employer':{
