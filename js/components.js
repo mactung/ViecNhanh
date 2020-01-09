@@ -249,3 +249,13 @@ components.jobSeekerRegister = `
             </form>
             </section>
             `
+components.logIn = `
+    <form id="log-in-form">
+        <input name="email" placeholder="Email">
+        <input name="password" placeholder="Password">
+        <div id="log-in-error" class="error-message"></div>
+        <button id="log-in-btn">Log In</button>
+    </form>
+`
+components.employer = `${components.nav + components.employerMain}`
+components.jobSeeker = `${components.nav + components.employerMain}`

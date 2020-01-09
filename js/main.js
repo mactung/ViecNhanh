@@ -1,27 +1,34 @@
 window.onload = init ;
 function init () {
-    firebase.auth().onAuthStateChanged(user => {
-        if (view.currentComponent == 'welcome page') {
-            return
-        }
+    firebase.auth().onAuthStateChanged(async (user) => {
+        
         if (user && user.emailVerified) {
-            if (user.permision == 'employer') {
-                
+            // controller.loadInforUser()
+           await controller.loadInforUser()
+            console.log(model.inforCurrentUser);
+
+            if (model.inforCurrentUser.permissionUser == 'jobSeeker'){
+                view.showComponents('jobSeeker')
+
+            }else {
+                view.showComponents('employer')
             }
-            view.showComponents('welcome page')
+            
         } else {
             view.showComponents('welcome page')
         }
     })
     
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=>{
-            console.log(position.coords.latitude);
-            console.log(position.coords.longitude);
+    // if (navigator.geolocation) {
+    //     console.log(navigator.geolocation);
+        
+    //     navigator.geolocation.getCurrentPosition((position)=>{
+    //         console.log(position.coords.latitude);
+    //         console.log(position.coords.longitude);
             
-        });
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
+    //     });
+    // } else {
+    //     x.innerHTML = "Geolocation is not supported by this browser.";
+    // }
     
 }
