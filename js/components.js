@@ -249,18 +249,16 @@ components.jobSeekerRegister = `
             </form>
             </section>
             `
-<<<<<<< HEAD
-components.logIn = `
-    <form id="log-in-form">
-        <input name="email" placeholder="Email">
-        <input name="password" placeholder="Password">
-        <div id="log-in-error" class="error-message"></div>
-        <button id="log-in-btn">Log In</button>
-    </form>
-`
+// components.logIn = `
+//     <form id="log-in-form">
+//         <input name="email" placeholder="Email">
+//         <input name="password" placeholder="Password">
+//         <div id="log-in-error" class="error-message"></div>
+//         <button id="log-in-btn">Log In</button>
+//     </form>
+// `
 components.employer = `${components.nav + components.employerMain}`
 components.jobSeeker = `${components.nav + components.employerMain}`
-=======
 
 components.logIn = `
 <section class="login-container">
@@ -288,4 +286,3 @@ components.logIn = `
             </form>
             </section>
 `
->>>>>>> 9ca6da729440cf9cd5643624a89805fbba7cd4a2
