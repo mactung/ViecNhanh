@@ -194,7 +194,7 @@ input{
 }
 
 
-
+/* welcome page */
 
 #header{
     height: 60px;
@@ -280,4 +280,31 @@ input{
 
 #footer>*{
     margin-left: 10px;
+}
+
+/* login page */
+
+.login-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    background: url('../DesManHinh/jobjob.jpg') center center no-repeat;
+    background-size: cover ;
+    
+}
+
+.form-login{
+    background: #ffffff;
+    width: 500px;
+}
+
+#login-submit-btn{
+    width: 120px;
+    height: 38px;
+    padding: 10px;
+    color: #ffffff;
+    background:#4482ff;
+    border-radius: 5px;
+    border: none;
 }
