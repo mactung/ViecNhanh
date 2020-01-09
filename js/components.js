@@ -167,11 +167,11 @@ components.jobSeekerRegister = `
                 <div class="form-content">
                     <div class="name-wrapper">
                         <div class="input-wrapper">
-                            <input type="text" name="firstname" placeholder="First Name">
+                            <input type="text" name="firstName" placeholder="First Name">
                             <div id="firstname-error" class="message-error"></div>
                         </div>
                         <div class="input-wrapper">
-                            <input type="text" name="lastname" placeholder="Last Name">
+                            <input type="text" name="lastName" placeholder="Last Name">
                             <div id="lastname-error" class="message-error"></div>
                         </div>
                     </div>
@@ -191,7 +191,6 @@ components.jobSeekerRegister = `
                         <div id="confirm-password-error" class="message-error"></div>
                     </div>
                     <div id="register-error" class="message-error"></div>
-                    <div id="register-success" class="message-success" style="color: #00ff00"></div>
 
                     <div class="dob-gender-wrapper">
                         <div class="input-wrapper" id="dob-wrapper">
@@ -208,7 +207,7 @@ components.jobSeekerRegister = `
                     </div>
                     
                     <div class="input-wrapper">
-                        <input type="tel" name="mobile-number" id="mobile-number" placeholder="Mobile Number">
+                        <input type="tel" name="mobileNumber" id="mobile-number" placeholder="Mobile Number">
                     </div>
 
                     <div class="city-district-wrapper">
@@ -229,19 +228,21 @@ components.jobSeekerRegister = `
                     <div class="input-wrapper">
                         <span>Chọn 3 ngành nghề chính</span>
                         <div class="job-wrapper">
-                            <select name="job-1" id="job-1">
+                            <select name="job1" id="job-1">
                                 <option value="1">bốc vác</option>
                             </select>
-                            <select name="job-2" id="job-2">
+                            <select name="job2" id="job-2">
                                 <option value="1">bốc vác</option>
                             </select>
-                            <select name="job-3" id="job-3">
+                            <select name="job3" id="job-3">
                                 <option value="1">bốc vác</option>
                             </select>
                         </div>                        
                     </div>
                     
                 </div>
+                <div id="register-success" class="message-success" style="color: #00ff00"></div>
+
                 <div class="form-footer">
                     <a id="register-link" href="#">Already have an account? Login</a>
                     <button id="register-submit-btn" type="submit">Register</button>
@@ -249,22 +250,10 @@ components.jobSeekerRegister = `
             </form>
             </section>
             `
-<<<<<<< HEAD
-components.logIn = `
-    <form id="log-in-form">
-        <input name="email" placeholder="Email">
-        <input name="password" placeholder="Password">
-        <div id="log-in-error" class="error-message"></div>
-        <button id="log-in-btn">Log In</button>
-    </form>
-`
-components.employer = `${components.nav + components.employerMain}`
-components.jobSeeker = `${components.nav + components.employerMain}`
-=======
 
 components.logIn = `
 <section class="login-container">
-            <form id="form-login" class="form-login">
+            <form id="log-in-form" class="form-login">
                 <div class="form-header">
                     <h3>Log in</h3>
                 </div>
@@ -288,4 +277,6 @@ components.logIn = `
             </form>
             </section>
 `
->>>>>>> 9ca6da729440cf9cd5643624a89805fbba7cd4a2
+components.employer = `${components.nav + components.employerMain}`
+components.jobSeeker = `${components.nav }
+jobSeeker`
