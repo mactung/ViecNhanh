@@ -249,3 +249,30 @@ components.jobSeekerRegister = `
             </form>
             </section>
             `
+
+components.logIn = `
+<section class="login-container">
+            <form id="form-login" class="form-login">
+                <div class="form-header">
+                    <h3>Log in</h3>
+                </div>
+                <div class="form-content">
+            
+                    <div class="input-wrapper">
+                        <input type="email" name="email" placeholder="Email">
+                        <div id="email-error" class="message-error"></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" placeholder="Password">
+                        <div id="password-error" class="message-error"></div>
+                    </div>
+                    <div id="login-error" class="message-error"></div>
+            
+                </div>
+                <div class="form-footer">
+                    <a id="login-link" href="#">Haven't got an account yet? Sign up</a>
+                    <button id="login-submit-btn" type="submit">Login</button>
+                </div>
+            </form>
+            </section>
+`
