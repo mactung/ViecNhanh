@@ -240,9 +240,55 @@ components.controlBar = `<div id="control-bar">
                     
                 </div>
             </div>`
-components.mainContent = `
-<div id="main-content">
-                <div id="search-bar-filter-container">
+components.listEmployee = `
+    <div id="search-bar-filter-container">
+                    <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+                    <div id="filter-container">
+                        <span>Lọc</span>
+                        <select name="filter" id="filter">
+                            <option value="distance">Khoảng cách</option>
+                            <option value="salary">Mức lương</option>
+                        </select>
+                    </div>
+                    
+                    <div id="tags-container">
+                        <span>Tags</span>
+                        <select name="jobs-tags" id="jobs-tags">
+                            <option value="1">Bốc vác</option>
+                            <option value="2">Dọn nhà</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="employee-list-container">
+                    <div class="employee-detail-container">
+                        
+                    </div>
+                    <div class="employee-detail-container"></div>
+                    <div class="employee-detail-container"></div>
+                    
+                </div>
+`
+components.employerProfile = `
+Employer Profile
+`
+components.postJob = `
+Job POst
+`
+components.employer = `${components.nav}
+    <div id="control-bar-main-content-container">
+
+            ${components.controlBar}
+            <div id="main-content">
+            ${components.listEmployee}
+            </div>
+
+        </div>  
+`
+
+
+
+components.listJobs = `
+<div id="search-bar-filter-container">
                     <input type="text" name="search-bar" id="search-bar" placeholder="Search">
                     <div id="filter-container">
                         <span>Lọc</span>
@@ -287,17 +333,23 @@ components.mainContent = `
                     <div class="job-detail-container"></div>
                     
                 </div>
-            </div>
-`
-components.employer = `${components.nav}
-    <div id="control-bar-main-content-container">
 
-            ${components.controlBar + components.mainContent}
-        </div>  
+`
+components.employeeProfile = `
+Job Seeker Profile
+`
+components.application = `
+Job applocation
 `
 components.jobSeeker = `${components.nav}
     <div id="control-bar-main-content-container">
 
-            ${components.controlBar + components.mainContent}
+            ${components.controlBar}
+            <div id="main-content">
+            ${components.listJobs}
+
+            </div>
         
         </div>  `
+
+

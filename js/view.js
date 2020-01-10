@@ -123,13 +123,32 @@ view.showComponents = function (name){
                 <div id="find-empployee" class="tab">
                         <span>Tìm người</span>
                     </div>
-                    <div id="personal-info" class="tab">
+                    <div id="personal-profile" class="tab">
                         <span>Thông tin cá nhân</span>
                     </div>
                     <div id="posted-jobs" class="tab">
                         <span>Công việc đã đăng</span>
                     </div>
             `
+
+            let findEmployeeBtn = document.getElementById('find-empployee')
+            findEmployeeBtn.onclick = findEmployeeBtnClickHandle
+
+            let profileEmployerBtn = document.getElementById('personal-profile')
+            profileEmployerBtn.onclick = profileEmployerBtnClickHandle
+
+            let jobsPostedBtn = document.getElementById('posted-jobs')
+            jobsPostedBtn.onclick = jobsPostedBtnClickHandle
+
+            function findEmployeeBtnClickHandle () {
+                document.getElementById('main-content').innerHTML = components.listEmployee;
+            }
+            function profileEmployerBtnClickHandle () {
+                document.getElementById('main-content').innerHTML = components.employerProfile;
+            }
+            function jobsPostedBtnClickHandle () {
+                document.getElementById('main-content').innerHTML = components.postJob;
+            }
 
             break;
 
@@ -139,16 +158,35 @@ view.showComponents = function (name){
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
             document.getElementById('control-container').innerHTML = `
-                <div id="find-jobs" class="tab">
+                <div id="find-job" class="tab">
                         <span>Tìm việc</span>
                     </div>
-                    <div id="personal-info" class="tab">
+                    <div id="employee-profile" class="tab">
                         <span>Thông tin cá nhân</span>
                     </div>
-                    <div id="applied-jobs" class="tab">
+                    <div id="application-jobs" class="tab">
                         <span>Công việc đã chọn</span>
                     </div>
             `
+
+            let findJobBtn = document.getElementById('find-job')
+            findJobBtn.onclick = findJobBtnClickHandle
+
+            let profileEmployeeBtn = document.getElementById('employee-profile')
+            profileEmployeeBtn.onclick = profileEmployeeBtnClickHandle
+
+            let applicationJobsBtn = document.getElementById('application-jobs')
+            applicationJobsBtn.onclick = applicationJobsBtnClickHandle
+
+            function findJobBtnClickHandle() {
+                document.getElementById('main-content').innerHTML = components.listJobs;
+            }
+            function profileEmployeeBtnClickHandle() {
+                document.getElementById('main-content').innerHTML = components.employeeProfile;
+            }
+            function applicationJobsBtnClickHandle() {
+                document.getElementById('main-content').innerHTML = components.application;
+            }
 
             break;
 
