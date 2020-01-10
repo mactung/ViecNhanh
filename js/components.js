@@ -5,61 +5,16 @@ components.nav = `
         <div class="logo">
 
         </div>
-
-        <div class="menu-select">
-            <div class="select-btn active"><span>Tìm người</span></div>
-            <div class="select-btn"><span>Bài đăng</span></div>
-        </div>
-        
-            
         <div class="user-information">
             <div class="user-avatar"></div>
             <div class="user-name"></div>
         </div>
-            
-    </div>
-`;
-
-
-
-components.employerMain = `
-    <div class="main">
-        <div class="location-select">
-            <select>
-                <option value="1">Hà Nội</option>
-                <option valua="2">Hồ Chí Minh</option>
-            </select>
-            <select>
-                <option value="1">Hà Đông</option>
-                <option valua="2">Hai Bà Trưng</option>
-            </select>
-
-        </div>
-        <div class="input-search">
-            <div class="input-wrapper">
-                <input/>
                 
-            </div>
-        </div>
-        <div class="filter-wrapper">
-            <select>
-                <option value="1">Khoảng cách</option>
-                <option valua="2">Hồ Chí Minh</option>
-            </select>
-            <select>
-                <option value="1">Hà Đông</option>
-                <option valua="2">Hai Bà Trưng</option>
-            </select>
-        </div>
-        <div class="employee-list">
-            <div class="employee-infor-board">
-
-            </div>
-        
-        </div>
     </div>
-        
 `;
+
+
+
 
 components.welcomePage = `
 <div class="nav-bar">
@@ -277,6 +232,55 @@ components.logIn = `
             </form>
             </section>
 `
-components.employer = `${components.nav + components.employerMain}`
-components.jobSeeker = `${components.nav }
-jobSeeker`
+
+components.controlBar = `<div id="control-bar">
+                <div id="avatar-container">
+                    <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
+                </div>
+
+                <div id="control-container">
+                    
+                </div>
+            </div>`
+components.mainContent = `
+<div id="main-content">
+                <div id="search-bar-filter-container">
+                    <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+                    <div id="filter-container">
+                        <span>Lọc</span>
+                        <select name="filter" id="filter">
+                            <option value="distance">Khoảng cách</option>
+                            <option value="salary">Mức lương</option>
+                        </select>
+                    </div>
+                    
+                    <div id="tags-container">
+                        <span>Tags</span>
+                        <select name="jobs-tags" id="jobs-tags">
+                            <option value="1">Bốc vác</option>
+                            <option value="2">Dọn nhà</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="jobs-list-container">
+                    <div class="job-detail-container">
+
+                    </div>
+                    <div class="job-detail-container"></div>
+                    <div class="job-detail-container"></div>
+                    
+                </div>
+            </div>
+`
+components.employer = `${components.nav}
+    <div id="control-bar-main-content-container">
+
+            ${components.controlBar + components.mainContent}
+        </div>  
+`
+components.jobSeeker = `${components.nav}
+    <div id="control-bar-main-content-container">
+
+            ${components.controlBar + components.mainContent}
+        
+        </div>  `

@@ -118,6 +118,19 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.employer;
+
+            document.getElementById('control-container').innerHTML = `
+                <div id="find-empployee">
+                        <span>Tìm người</span>
+                    </div>
+                    <div id="personal-info">
+                        <span>Thông tin cá nhân</span>
+                    </div>
+                    <div id="posted-jobs">
+                        <span>Công việc đã đăng</span>
+                    </div>
+            `
+
             break;
 
         }
@@ -125,6 +138,18 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
+            document.getElementById('control-container').innerHTML = `
+                <div id="find-jobs">
+                        <span>Tìm việc</span>
+                    </div>
+                    <div id="personal-info">
+                        <span>Thông tin cá nhân</span>
+                    </div>
+                    <div id="applied-jobs">
+                        <span>Công việc đã chọn</span>
+                    </div>
+            `
+
             break;
 
         }
