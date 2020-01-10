@@ -455,4 +455,66 @@ select{
     text-align: left;
 }    
 
+/* profile employee */
+#profile-container{
+    background: #C4C4C4;
+    width: 1000px;
+    height: 500px;
+    align-self: center;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+#profile-container button{
+    margin-right: 50px;
+    margin-top: 10px;
+    float: right;
+    height: 30px;
+    width: 120px;
+    border: none;
+}
+
+#personal-info{
+    display: flex;
+    justify-content: space-around;
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+#personal-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 600px;
+    margin-left: 30px;
+}
+
+#personal-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 600px;
+
+}
+
+#describtion{
+    display: flex;
+    justify-content: space-around;
+}
+
+#describtion span{
+    margin-top: 20px;
+}
+
+#self-describtion{
+    height: 200px;
+    width: 700px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.profile-line{
+    display: inline;
+}
 

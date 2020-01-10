@@ -336,7 +336,55 @@ components.listJobs = `
 
 `
 components.employeeProfile = `
-Job Seeker Profile
+<div id="profile-container">
+                    <div id="personal-info">
+                        <div id="personal-left">
+                            <div class="profile-wrapper">
+                                <span>Họ và tên :</span>
+                                <div class="profile-line" id="fullName">Nguyễn Văn A</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Ngày sinh :</span>
+                                <div class="profile-line" id="dateOfBirth">01/01/1999</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Số điện thoại :</span>
+                                <div class="profile-line" id="mobileNumber">0336275142</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Tags công việc :</span>
+                                <div class="profile-line" id="jobTags"></div>
+                            </div>
+                        </div>
+
+                        <div id="personal-right">
+                            <div class="profile-wrapper">
+                                <span>Giới tính :</span>
+                                <div class="profile-line" id="gender">Nam</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Email :</span>
+                                <div class="profile-line" id="email">nguyenvana@gmail.com</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Thành phố :</span>
+                                <div class="profile-line" id="city">Hà Nội</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Quận/Huyện :</span>
+                                <div class="profile-line" id="district">Thanh Xuân</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="describtion">
+                        <span>Mô tả bản thân</span>
+                        <div id="self-describtion">
+                            Đẹp trai giống bố
+                        </div>
+                    </div>
+                    <button>Edit</button>
+                </div>
 `
 components.application = `
 Job applocation
