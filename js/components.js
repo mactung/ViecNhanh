@@ -262,7 +262,26 @@ components.mainContent = `
                 </div>
                 <div id="jobs-list-container">
                     <div class="job-detail-container">
-
+                        <div class="job-detail-container-2">
+                            <div class="job-detail-left">
+                                <a href="#">User</a>
+                            </div>
+                            
+                            <div class="job-detail-center">
+                                <span>Loại CV: 
+                                    <span>Bốc vác</span>
+                                </span>
+                                <span>Địa chỉ:
+                                    <span>20 Nguyễn Chí Thanh</span>
+                                </span>
+                                <span>Lương:
+                                    <span>50.000VND/h</span>
+                                </span>
+                                <span>Thời gian:
+                                    <span>10/1/2020</span>
+                                </span>
+                            </div>
+                            <button class="apply-job-btn">Apply</button>
                     </div>
                     <div class="job-detail-container"></div>
                     <div class="job-detail-container"></div>

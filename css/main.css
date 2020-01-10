@@ -423,4 +423,36 @@ select{
     display: inline-block;
 }
 
+.job-detail-container-2{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+}
+
+.job-detail-container button{
+    height: 40px;
+    width: 120px;
+    align-self: center;
+    border-radius: 5px;
+    border: none;
+}
+
+.job-detail-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.job-detail-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 500px;
+}
+
+.job-detail-center>*{
+    text-align: left;
+}    
+
 
