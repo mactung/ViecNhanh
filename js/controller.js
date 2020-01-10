@@ -45,6 +45,10 @@ controller.logIn = async function(logInInfor){
         
     }
 }
+controller.logOut = async function () {
+    await firebase.auth().signOut()
+    
+}
 controller.loadInforUser = async function() {
     let currentUser = firebase.auth().currentUser
     let {email} = currentUser;

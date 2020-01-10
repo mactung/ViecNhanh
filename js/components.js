@@ -8,13 +8,11 @@ components.nav = `
         <div class="user-information">
             <div class="user-avatar"></div>
             <div class="user-name"></div>
+            <button onclick="controller.logOut()">Log Out</button>
         </div>
                 
     </div>
 `;
-
-
-
 
 components.welcomePage = `
 <div class="nav-bar">
