@@ -394,7 +394,41 @@ components.employeeProfile = `
                 </div>
 `
 components.application = `
-Job applocation
+<div id="applied-jobs-header">
+                    Applied Jobs:
+                </div>
+                <div id="applied-jobs-list-container">
+                    <div class="applied-job-detail-container">
+                        <div class="applied-job-detail-container-2">
+                            <div class="applied-job-detail-left">
+                                <a href="#">User</a>
+                            </div>
+                            
+                            <div class="applied-job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobType">Bốc vác</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">20 Nguyễn Chí Thanh</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">50 000VND/h</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="date">10/1/2020</div>
+                                </div>
+                            </div>
+                            <button class="cancel-applied-job-btn">Cancel</button>
+                    </div>
+                    <div class="job-detail-container"></div>
+                    <div class="job-detail-container"></div>
+                    
+                </div>
+            </div>
 `
 components.jobSeeker = `${components.nav}
     <div id="control-bar-main-content-container">
