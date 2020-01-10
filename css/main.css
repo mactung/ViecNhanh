@@ -455,6 +455,10 @@ select{
     text-align: left;
 }    
 
+.job-detail{
+    display: inline;
+}
+
 /* profile employee */
 #profile-container{
     background: #C4C4C4;
