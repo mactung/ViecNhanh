@@ -63,6 +63,14 @@ controller.loadInforUser = async function() {
     model.saveInforCurrentUser(...user)
 
 }
+controller.addJob = async function(dataPost){
+
+    let { titleJob, address, time, jobDescription, salary} = dataPost
+
+    await firebase.firestore().collection('postFindEmployee').add(dataPost)
+
+
+}
 
 
 function transformDocs(docs) {

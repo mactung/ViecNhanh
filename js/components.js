@@ -243,6 +243,51 @@ components.controlBar = `<div id="control-bar">
                     
                 </div>
             </div>`
+components.postJob = `
+<div class="modal fade" id="add-job-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form-post-job" onsubmit="">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng bài</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="input-wrapper">
+                        <span>Tên công việc:</span>
+                        <input name="jobTitle" placeholder="Tên công việc">
+                    </div>
+                    <div class="input-wrapper">
+                        <span>Địa chỉ:</span>
+                        <input name="address" placeholder="Địa chỉ">
+                    </div>
+                    <div class="input-wrapper">
+                        <span>Thời gian:</span>
+                        <input name="time" placeholder="Thời gian">
+                    </div>
+                    <div class="input-wrapper">
+                        <span>Mô tả công việc:</span>
+                        <input name="description" placeholder="Mô tả công việc">
+                    </div>
+                    <div class="input-wrapper">
+                        <span>Lương:</span>
+                        <input name="salary" placeholder="">
+                    </div>
+
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+`
 components.listEmployee = `
     <div id="search-bar-filter-container">
                     <input type="text" name="search-bar" id="search-bar" placeholder="Search">
@@ -261,6 +306,7 @@ components.listEmployee = `
                             <option value="2">Dọn nhà</option>
                         </select>
                     </div>
+                    <button id="post-job">Post</button>
                 </div>
                 <div id="employee-list-container">
                     <div class="employee-detail-container">
@@ -274,7 +320,7 @@ components.listEmployee = `
 components.employerProfile = `
 Employer Profile
 `
-components.postJob = `
+components.postedJob = `
 Job POst
 `
 components.employer = `${components.nav}
@@ -283,6 +329,7 @@ components.employer = `${components.nav}
             ${components.controlBar}
             <div id="main-content">
             ${components.listEmployee}
+            ${components.postJob}
             </div>
 
         </div>  

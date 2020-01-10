@@ -109,7 +109,6 @@ view.showComponents = function (name){
 
             function loginBtnSubmitHandle(e) {
                 e.preventDefault();
-                alert('asbfkjsab')
                 controller.logIn({email: formLogIn.email.value, password : formLogIn.password.value})
             }
             break;
@@ -142,6 +141,11 @@ view.showComponents = function (name){
             let jobsPostedBtn = document.getElementById('posted-jobs')
             jobsPostedBtn.onclick = jobsPostedBtnClickHandle
 
+            let postBtn = document.getElementById('post-job')
+            postBtn.onclick = () => { $("#add-job-modal").modal('show');}
+
+            
+
             function findEmployeeBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.listEmployee;
             }
@@ -150,6 +154,20 @@ view.showComponents = function (name){
             }
             function jobsPostedBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.postJob;
+            }
+            let formPost = document.getElementById('form-post-job')
+            formPost.onsubmit = submitFormPostHandle
+            
+            function submitFormPostHandle(e){
+                e.preventDefault()
+                dataPost = {
+                    jobTitle: formPost.jobTitle.value,
+                    address: formPost.address.value,
+                    time: formPost.time.value,
+                    jobDescription: formPost.description.value,
+                    salary: formPost.salary.value
+                }
+                controller.addJob(dataPost)
             }
 
             break;
