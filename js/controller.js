@@ -66,8 +66,13 @@ controller.loadInforUser = async function() {
 controller.addJob = async function(dataPost){
 
     let { titleJob, address, time, jobDescription, salary} = dataPost
+    try {
+        await firebase.firestore().collection('postFindEmployee').add(dataPost)
+        $("#add-job-modal").modal('hide');
 
-    await firebase.firestore().collection('postFindEmployee').add(dataPost)
+    }catch (err){
+        setText('post-noti',err)
+    }
 
 
 }

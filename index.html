@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Việc Vặt !!!</title>
-    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZW2GQFS85N&amp;l=dataLayer&amp;cx=c"></script><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZW2GQFS85N&amp;l=dataLayer&amp;cx=c"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     
@@ -49,125 +50,19 @@
     <script src="./js/model.js"></script>
     <script src="./js/view.js"></script>
     <script src="./js/main.js"></script>
-<script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/39/6/intl/vi_ALL/common.js"></script><script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/39/6/intl/vi_ALL/util.js"></script><script type="text/javascript" charset="UTF-8" src="http://maps.googleapis.com/maps/api/js/AuthenticationService.Authenticate?1sfile%3A%2F%2F%2FD%3A%2FJavaScript%2FCI36%2FProject%2FViecNhanh%2Findex.html%3FjobTitle%3D%26address%3D%26time%3D%26description%3D%26salary%3D&amp;5sfile%3A%2F%2F%2FD%3A%2FJavaScript%2FCI36%2FProject%2FViecNhanh%2Findex.html%3FjobTitle%3D%26address%3D%26time%3D%26description%3D%26salary%3D&amp;callback=_xdc_._8ba6xq&amp;token=117372"></script></head>
+</head>
 
 <body>
     <div id="app">
-    <div class="nav-bar">
-        <div class="logo">
 
-        </div>
-        <div class="user-information">
-            <div class="user-avatar"></div>
-            <div class="user-name"></div>
-            <button onclick="controller.logOut()">Log Out</button>
-        </div>
-                
+
+   
     </div>
-
-    <div id="control-bar-main-content-container">
-
-            <div id="control-bar">
-                <div id="avatar-container">
-                    <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
-                </div>
-                <div id="full-name-bar">Mạc Tùng</div>
-
-
-                <div id="control-container">
-                <div id="find-empployee" class="tab">
-                        <span>Tìm người</span>
-                    </div>
-                    <div id="personal-profile" class="tab">
-                        <span>Thông tin cá nhân</span>
-                    </div>
-                    <div id="posted-jobs" class="tab">
-                        <span>Công việc đã đăng</span>
-                    </div>
-            </div>
-            </div>
-            <div id="main-content">
-            
-    <div id="search-bar-filter-container">
-                    <input type="text" name="search-bar" id="search-bar" placeholder="Search">
-                    <div id="filter-container">
-                        <span>Lọc</span>
-                        <select name="filter" id="filter">
-                            <option value="distance">Khoảng cách</option>
-                            <option value="salary">Mức lương</option>
-                        </select>
-                    </div>
-                    
-                    <div id="tags-container">
-                        <span>Tags</span>
-                        <select name="jobs-tags" id="jobs-tags">
-                            <option value="1">Bốc vác</option>
-                            <option value="2">Dọn nhà</option>
-                        </select>
-                    </div>
-                    <button id="post-job">Post</button>
-                </div>
-                <div id="employee-list-container">
-                    <div class="employee-detail-container">
-                        
-                    </div>
-                    <div class="employee-detail-container"></div>
-                    <div class="employee-detail-container"></div>
-                    
-                </div>
-
-            
-<div class="modal fade show" id="add-job-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true" style="padding-right: 16px; display: block;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form id="form-post-job" onsubmit="">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Đăng bài</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="input-wrapper">
-                        <span>Tên công việc:</span>
-                        <input name="jobTitle" placeholder="Tên công việc">
-                    </div>
-                    <div class="input-wrapper">
-                        <span>Địa chỉ:</span>
-                        <input name="address" placeholder="Địa chỉ">
-                    </div>
-                    <div class="input-wrapper">
-                        <span>Thời gian:</span>
-                        <input name="time" placeholder="Thời gian">
-                    </div>
-                    <div class="input-wrapper">
-                        <span>Mô tả công việc:</span>
-                        <input name="description" placeholder="Mô tả công việc">
-                    </div>
-                    <div class="input-wrapper">
-                        <span>Lương:</span>
-                        <input name="salary" placeholder="">
-                    </div>
-
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-            </div>
-
-        </div>  
-</div>
     
     
     
     
     
 
-<div class="modal-backdrop fade show"></div></body>
+</body>
+</html>

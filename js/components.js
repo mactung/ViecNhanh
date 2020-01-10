@@ -248,7 +248,7 @@ components.postJob = `
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form id="form-post-job" onsubmit="">
+                <form id="form-post-job">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Đăng bài</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -279,9 +279,11 @@ components.postJob = `
 
                         
                     </div>
+                    <div class="message" id="post-noti"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
+
                     </div>
                 </form>
             </div>
