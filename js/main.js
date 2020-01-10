@@ -7,8 +7,8 @@ function init () {
            await controller.loadInforUser()
             console.log(model.inforCurrentUser);
 
-            if (model.inforCurrentUser.permissionUser == 'jobSeeker'){
-                view.showComponents('jobSeeker')
+            if (model.inforCurrentUser.permissionUser == 'employee'){
+                view.showComponents('employee')
 
             }else {
                 view.showComponents('employer')

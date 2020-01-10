@@ -130,6 +130,8 @@ view.showComponents = function (name){
                         <span>Công việc đã đăng</span>
                     </div>
             `
+            document.getElementById('full-name-bar').innerHTML = 
+                model.inforCurrentUser.fullName
 
             let findEmployeeBtn = document.getElementById('find-empployee')
             findEmployeeBtn.onclick = findEmployeeBtnClickHandle
@@ -153,7 +155,7 @@ view.showComponents = function (name){
             break;
 
         }
-        case 'jobSeeker':{
+        case 'employee':{
             
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
@@ -168,6 +170,8 @@ view.showComponents = function (name){
                         <span>Công việc đã chọn</span>
                     </div>
             `
+            document.getElementById('full-name-bar').innerHTML =
+                model.inforCurrentUser.fullName
 
             let findJobBtn = document.getElementById('find-job')
             findJobBtn.onclick = findJobBtnClickHandle
@@ -183,6 +187,13 @@ view.showComponents = function (name){
             }
             function profileEmployeeBtnClickHandle() {
                 document.getElementById('main-content').innerHTML = components.employeeProfile;
+                view.setText('fullName',model.inforCurrentUser.fullName)
+                view.setText('gender',model.inforCurrentUser.gender)
+                view.setText('dateOfBirth', model.inforCurrentUser.dateOfBirth)
+                view.setText('mobileNumber', model.inforCurrentUser.mobileNumber)
+                view.setText('email', model.inforCurrentUser.email)
+                view.setText('self-description', model.inforCurrentUser.description)
+                view.setText('city', model.inforCurrentUser.city)
             }
             function applicationJobsBtnClickHandle() {
                 document.getElementById('main-content').innerHTML = components.application;

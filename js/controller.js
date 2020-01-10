@@ -5,6 +5,7 @@ controller.register = async function(registerInfor){
         createdAt: new Date().toISOString(),
         password: null,
         // geoLocation: {latitude, longitude},
+        fullName : lastName + fisrtName,
         comments: [],
         rate: 4,
         }

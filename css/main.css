@@ -501,16 +501,16 @@ select{
 
 }
 
-#describtion{
+#description{
     display: flex;
     justify-content: space-around;
 }
 
-#describtion span{
+#description span{
     margin-top: 20px;
 }
 
-#self-describtion{
+#self-description{
     height: 200px;
     width: 700px;
     background: #ffffff;

@@ -235,6 +235,9 @@ components.controlBar = `<div id="control-bar">
                 <div id="avatar-container">
                     <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
                 </div>
+                <div id="full-name-bar">
+                </div>
+
 
                 <div id="control-container">
                     
@@ -381,9 +384,9 @@ components.employeeProfile = `
                         </div>
                     </div>
 
-                    <div id="describtion">
+                    <div id="description">
                         <span>Mô tả bản thân</span>
-                        <div id="self-describtion">
+                        <div id="self-description">
                             Đẹp trai giống bố
                         </div>
                     </div>
