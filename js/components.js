@@ -314,18 +314,22 @@ components.listJobs = `
                             </div>
                             
                             <div class="job-detail-center">
-                                <span>Loại CV: 
-                                    <span>Bốc vác</span>
-                                </span>
-                                <span>Địa chỉ:
-                                    <span>20 Nguyễn Chí Thanh</span>
-                                </span>
-                                <span>Lương:
-                                    <span>50.000VND/h</span>
-                                </span>
-                                <span>Thời gian:
-                                    <span>10/1/2020</span>
-                                </span>
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobType">Bốc vác</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">20 Nguyễn Chí Thanh</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">50 000VND/h</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="date">10/1/2020</div>
+                                </div>
                             </div>
                             <button class="apply-job-btn">Apply</button>
                     </div>
