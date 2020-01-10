@@ -15,11 +15,13 @@ a{
     text-decoration: none;
 }
 
+
 input{
-    height: 40px;
+    width: 100%;
+    height: 38px;
+    padding: 10px;
+    border: 1px solid #ecedec;
     border-radius: 5px;
-    border: 1px solid #E5E5E5;
-    padding: 5px;
 }
 select{
     width: 250px;
@@ -29,6 +31,7 @@ select{
     padding: 5px;
     
 }
+
 
 .nav-bar{
     height: 60px;
@@ -129,13 +132,7 @@ select{
     padding: 20px 50px;
 }
 
-input{
-    width: 100%;
-    height: 38px;
-    padding: 10px;
-    border: 1px solid #ecedec;
-    border-radius: 5px;
-}
+
 
 .dob-gender-wrapper{
     display: flex;
@@ -347,6 +344,21 @@ input{
     background: #F6EAEA;
     height: 100vh;
     width: 100%;
+}
+.tab {
+    width: 80%;
+    height: 60px;
+    background-color: red;
+    cursor: pointer;   
+    text-align: center;
+    color: white;
+}
+.tab >*{
+   line-height: 60px;
+    
+}
+.tab.active {
+    box-shadow: #E5E5E5 ;
 }
 
 #main-content{

@@ -120,13 +120,13 @@ view.showComponents = function (name){
             app.innerHTML = components.employer;
 
             document.getElementById('control-container').innerHTML = `
-                <div id="find-empployee">
+                <div id="find-empployee" class="tab">
                         <span>Tìm người</span>
                     </div>
-                    <div id="personal-info">
+                    <div id="personal-info" class="tab">
                         <span>Thông tin cá nhân</span>
                     </div>
-                    <div id="posted-jobs">
+                    <div id="posted-jobs" class="tab">
                         <span>Công việc đã đăng</span>
                     </div>
             `
@@ -139,13 +139,13 @@ view.showComponents = function (name){
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
             document.getElementById('control-container').innerHTML = `
-                <div id="find-jobs">
+                <div id="find-jobs" class="tab">
                         <span>Tìm việc</span>
                     </div>
-                    <div id="personal-info">
+                    <div id="personal-info" class="tab">
                         <span>Thông tin cá nhân</span>
                     </div>
-                    <div id="applied-jobs">
+                    <div id="applied-jobs" class="tab">
                         <span>Công việc đã chọn</span>
                     </div>
             `
