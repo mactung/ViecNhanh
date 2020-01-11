@@ -320,10 +320,71 @@ components.listEmployee = `
                 </div>
 `
 components.employerProfile = `
-Employer Profile
+<div id="employer-profile-container">
+                    <div id="employer-personal-info">
+                        
+                            <div class="profile-wrapper">
+                                <span>Họ và tên :</span>
+                                <div class="profile-line" id="fullName">Nguyễn Văn A</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Số điện thoại :</span>
+                                <div class="profile-line" id="mobileNumber">0336275142</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Email :</span>
+                                <div class="profile-line" id="email">nguyenvana@gmail.com</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Thành phố :</span>
+                                <div class="profile-line" id="city">Hà Nội</div>
+                            </div>
+                            <div class="profile-wrapper">
+                                <span>Quận/Huyện :</span>
+                                <div class="profile-line" id="district">Thanh Xuân</div>
+                            </div>
+                        
+                    </div>
+
+                    <button>Edit</button>
+                </div>
 `
 components.postedJob = `
-Job POst
+<div id="posted-jobs-header">
+                    Posted Jobs:
+                </div>
+                <div id="posted-jobs-list-container">
+                    <div class="posted-job-detail-container">
+                        <div class="posted-job-detail-container-2">
+                            <div class="posted-job-detail-left">
+                                <a href="#">User</a>
+                            </div>
+                            
+                            <div class="posted-job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobType">Bốc vác</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">20 Nguyễn Chí Thanh</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">50 000VND/h</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="date">10/1/2020</div>
+                                </div>
+                            </div>
+                            <button class="cancel-posted-job-btn">Cancel</button>
+                    </div>
+                    <div class="job-detail-container"></div>
+                    <div class="job-detail-container"></div>
+                    
+                </div>
+            </div>
 `
 components.employer = `${components.nav}
     <div id="control-bar-main-content-container">
@@ -359,34 +420,6 @@ components.listJobs = `
                     </div>
                 </div>
                 <div id="jobs-list-container">
-                    <div class="job-detail-container">
-                        <div class="job-detail-container-2">
-                            <div class="job-detail-left">
-                                <a href="#">User</a>
-                            </div>
-                            
-                            <div class="job-detail-center">
-                                <div class="job-detail-wrapper">
-                                    <span>Loại CV:</span>
-                                    <div class="job-detail" id="jobType">Bốc vác</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Địa chỉ:</span>
-                                    <div class="job-detail" id="address">20 Nguyễn Chí Thanh</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Lương</span>
-                                    <div class="job-detail" id="salary">50 000VND/h</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Thời gian:</span>
-                                    <div class="job-detail" id="date">10/1/2020</div>
-                                </div>
-                            </div>
-                            <button class="apply-job-btn">Apply</button>
-                    </div>
-                    <div class="job-detail-container"></div>
-                    <div class="job-detail-container"></div>
                     
                 </div>
 

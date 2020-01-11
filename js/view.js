@@ -153,19 +153,21 @@ view.showComponents = function (name){
                 document.getElementById('main-content').innerHTML = components.employerProfile;
             }
             function jobsPostedBtnClickHandle () {
-                document.getElementById('main-content').innerHTML = components.postJob;
+                document.getElementById('main-content').innerHTML = components.postedJob;
             }
             let formPost = document.getElementById('form-post-job')
             formPost.onsubmit = submitFormPostHandle
             
             function submitFormPostHandle(e){
+                let currentUser = firebase.auth().currentUser.email
                 e.preventDefault()
                 dataPost = {
                     jobTitle: formPost.jobTitle.value,
                     address: formPost.address.value,
                     time: formPost.time.value,
                     jobDescription: formPost.description.value,
-                    salary: formPost.salary.value
+                    salary: formPost.salary.value,
+                    postOwner: currentUser
                 }
                 controller.addJob(dataPost)
             }
@@ -177,6 +179,8 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
+            controller.showJobsList()
+
             document.getElementById('control-container').innerHTML = `
                 <div id="find-job" class="tab">
                         <span>Tìm việc</span>
@@ -201,6 +205,7 @@ view.showComponents = function (name){
             applicationJobsBtn.onclick = applicationJobsBtnClickHandle
 
             function findJobBtnClickHandle() {
+                controller.showJobsList()
                 document.getElementById('main-content').innerHTML = components.listJobs;
             }
             function profileEmployeeBtnClickHandle() {
@@ -226,6 +231,7 @@ view.showComponents = function (name){
             break;
     }
 }
+
 
 view.setText = function (id,message){
     document.getElementById(id).innerHTML = message;

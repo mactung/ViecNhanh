@@ -77,6 +77,60 @@ controller.addJob = async function(dataPost){
 
 }
 
+controller.showJobsList = async function(){
+    let currentJobsList = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .get()
+    let docs = currentJobsList.docs
+    let jobsList = transformDocs(docs)
+    for(let job of jobsList){
+        let html = `
+        <div class="job-detail-container">
+                        <div class="job-detail-container-2">
+                            <div class="job-detail-left">
+                                <a href="#">User</a>
+                            </div>
+                            
+                            <div class="job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">${job.address}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="time">${job.time}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Mo ta cong viec:</span>
+                                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                                </div>
+                            </div>
+                            <button class="apply-job-btn">Apply</button>
+                    </div>`
+        document.getElementById('jobs-list-container').innerHTML += html       
+    }   
+}
+
+controller.showPostedJobs = async function(){
+    let currentUser = firebase.auth().currentUser.email
+    let postedJobsList = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .where('users','array-contains',currentUser)
+        .get()
+    let docs = postedJobsList.docs
+    let jobsList = transformDocs(docs)
+    console.log(jobsList);    
+}
 
 function transformDocs(docs) {
     let datas = []
