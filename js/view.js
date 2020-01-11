@@ -117,6 +117,7 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.employer;
+            controller.showEmployee()
 
             document.getElementById('control-container').innerHTML = `
                 <div id="find-empployee" class="tab">
@@ -148,6 +149,7 @@ view.showComponents = function (name){
 
             function findEmployeeBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.listEmployee;
+                controller.showEmployee()
             }
             function profileEmployerBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.employerProfile;
@@ -168,7 +170,8 @@ view.showComponents = function (name){
                     time: formPost.time.value,
                     jobDescription: formPost.description.value,
                     salary: formPost.salary.value,
-                    postOwner: currentUser
+                    postOwner: currentUser,
+                    applications: []
                 }
                 controller.addJob(dataPost)
             }
@@ -267,5 +270,11 @@ function jobApplyClickHandle(event,id) {
 function jobCancelClickHandle(event,id) {
     event.preventDefault()
     controller.cancelApplication(id)
+    document.getElementById(id).outerHTML = ''
+}
+
+function postedJobCancelClickHandle(event,id) {
+    event.preventDefault()
+    controller.cancelPostedJob(id)
     document.getElementById(id).outerHTML = ''
 }

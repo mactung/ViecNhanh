@@ -290,6 +290,7 @@ components.postJob = `
         </div>
     </div>
 `
+
 components.listEmployee = `
     <div id="search-bar-filter-container">
                     <input type="text" name="search-bar" id="search-bar" placeholder="Search">
@@ -310,13 +311,9 @@ components.listEmployee = `
                     </div>
                     <button id="post-job">Post</button>
                 </div>
-                <div id="employee-list-container">
-                    <div class="employee-detail-container">
-                        
-                    </div>
-                    <div class="employee-detail-container"></div>
-                    <div class="employee-detail-container"></div>
+                <div id="employees-list-container">
                     
+                </div>
                 </div>
 `
 components.employerProfile = `
@@ -364,7 +361,6 @@ components.employer = `${components.nav}
             ${components.controlBar}
             <div id="main-content">
             ${components.listEmployee}
-            ${components.postJob}
             </div>
 
         </div>  
