@@ -154,6 +154,7 @@ view.showComponents = function (name){
             }
             function jobsPostedBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.postedJob;
+                controller.showPostedJobs()
             }
             let formPost = document.getElementById('form-post-job')
             formPost.onsubmit = submitFormPostHandle
@@ -203,7 +204,7 @@ view.showComponents = function (name){
 
             let applicationJobsBtn = document.getElementById('application-jobs')
             applicationJobsBtn.onclick = applicationJobsBtnClickHandle
-
+    
             function findJobBtnClickHandle() {
                 controller.showJobsList()
                 document.getElementById('main-content').innerHTML = components.listJobs;
@@ -220,7 +221,9 @@ view.showComponents = function (name){
             }
             function applicationJobsBtnClickHandle() {
                 document.getElementById('main-content').innerHTML = components.application;
+                controller.showJobApplications()
             }
+            
 
             break;
 
@@ -231,6 +234,7 @@ view.showComponents = function (name){
             break;
     }
 }
+
 
 
 view.setText = function (id,message){
@@ -252,4 +256,16 @@ function allPassed(validateResults) {
         }
         return true
     }
+}
+
+function jobApplyClickHandle(event,id) {
+    event.preventDefault()
+    controller.updateApplication(id)
+    document.getElementById(id).outerHTML = ''
+}
+
+function jobCancelClickHandle(event,id) {
+    event.preventDefault()
+    controller.cancelApplication(id)
+    document.getElementById(id).outerHTML = ''
 }

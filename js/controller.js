@@ -78,21 +78,76 @@ controller.addJob = async function(dataPost){
 }
 
 controller.showJobsList = async function(){
+    let currentUser = firebase.auth().currentUser.email
     let currentJobsList = await firebase
         .firestore()
         .collection('postFindEmployee')
         .get()
+    
+    console.log(currentJobsList);
     let docs = currentJobsList.docs
+    
     let jobsList = transformDocs(docs)
+    for(let job of jobsList){    
+        if(job.applications.indexOf(currentUser) < 0){
+            let html = `
+            <div class="job-detail-container" id="${job.id}">
+                            <div class="job-detail-container-2">
+                                <div class="job-detail-left">
+                                    <a href="#">${job.postOwner}</a>
+                                </div>
+                                
+                                <div class="job-detail-center">
+                                    <div class="job-detail-wrapper">
+                                        <span>Loại CV:</span>
+                                        <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                    </div>
+                                    <div class="job-detail-wrapper">
+                                        <span>Địa chỉ:</span>
+                                        <div class="job-detail" id="address">${job.address}</div>
+                                    </div>
+                                    <div class="job-detail-wrapper">
+                                        <span>Lương</span>
+                                        <div class="job-detail" id="salary">${job.salary}</div>
+                                    </div>
+                                    <div class="job-detail-wrapper">
+                                        <span>Thời gian:</span>
+                                        <div class="job-detail" id="time">${job.time}</div>
+                                    </div>
+                                    <div class="job-detail-wrapper">
+                                        <span>Mo ta cong viec:</span>
+                                        <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                                    </div>
+                                </div>
+                                <button class="apply-job-btn" onclick="jobApplyClickHandle(event,'${job.id}')">Apply</button>
+                        </div>`
+            document.getElementById('jobs-list-container').innerHTML += html       
+        }   
+    }
+        
+}
+
+controller.showPostedJobs = async function(){
+    let currentUser = firebase.auth().currentUser.email
+    let postedJobsList = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .where('postOwner','==',currentUser)
+        .get()
+    
+    let docs = postedJobsList.docs
+    let jobsList = transformDocs(docs)
+    model.postedJob = jobsList
+
     for(let job of jobsList){
         let html = `
-        <div class="job-detail-container">
-                        <div class="job-detail-container-2">
-                            <div class="job-detail-left">
-                                <a href="#">User</a>
+        <div class="posted-job-detail-container" id="${job.id}">
+                        <div class="posted-job-detail-container-2">
+                            <div class="posted-job-detail-left">
+                                <a href="#">${job.postOwner}</a>
                             </div>
                             
-                            <div class="job-detail-center">
+                            <div class="posted-job-detail-center">
                                 <div class="job-detail-wrapper">
                                     <span>Loại CV:</span>
                                     <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
@@ -110,26 +165,82 @@ controller.showJobsList = async function(){
                                     <div class="job-detail" id="time">${job.time}</div>
                                 </div>
                                 <div class="job-detail-wrapper">
-                                    <span>Mo ta cong viec:</span>
+                                    <span>Mô tả công việc:</span>
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="apply-job-btn">Apply</button>
+                            <button class="cancel-posted-job-btn">Cancel</button>
                     </div>`
-        document.getElementById('jobs-list-container').innerHTML += html       
-    }   
+        document.getElementById('posted-jobs-list-container').innerHTML += html
+    }
 }
 
-controller.showPostedJobs = async function(){
+controller.showJobApplications = async function(){
     let currentUser = firebase.auth().currentUser.email
-    let postedJobsList = await firebase
+    let appliedJobsList = await firebase
         .firestore()
         .collection('postFindEmployee')
-        .where('users','array-contains',currentUser)
+        .where('applications','array-contains',currentUser)
         .get()
-    let docs = postedJobsList.docs
+    let docs = appliedJobsList.docs
     let jobsList = transformDocs(docs)
-    console.log(jobsList);    
+    for(let job of jobsList){
+        let html = `
+        <div class="applied-job-detail-container" id="${job.id}">
+                        <div class="applied-job-detail-container-2">
+                            <div class="applied-job-detail-left">
+                                <a href="#">${job.postOwner}</a>
+                            </div>
+                            
+                            <div class="applied-job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">${job.address}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="time">${job.time}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Mô tả công việc:</span>
+                                    <div class="job-detail" id="time">${job.jobDescription}</div>
+                                </div>
+                            </div>
+                            <button class="cancel-applied-job-btn" onclick="jobCancelClickHandle(event,'${job.id}')">Cancel</button>
+                    </div>`
+        
+        document.getElementById('applied-jobs-list-container').innerHTML += html
+    }
+}
+
+controller.updateApplication = async function(id){
+    let currentUser = firebase.auth().currentUser.email
+    let updateApplication = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .doc(id)
+        .update({
+            applications: firebase.firestore.FieldValue.arrayUnion(currentUser)
+        })
+}
+
+controller.cancelApplication = async function(id){
+    let currentUser = firebase.auth().currentUser.email
+    let cancelApplication = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .doc(id)
+        .update({
+            applications: firebase.firestore.FieldValue.arrayRemove(currentUser)
+        })
 }
 
 function transformDocs(docs) {
