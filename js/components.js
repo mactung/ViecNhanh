@@ -361,6 +361,7 @@ components.employer = `${components.nav}
             ${components.controlBar}
             <div id="main-content">
             ${components.listEmployee}
+            ${components.postJob}
             </div>
 
         </div>  

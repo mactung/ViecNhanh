@@ -63,9 +63,23 @@ controller.loadInforUser = async function() {
     model.saveInforCurrentUser(...user)
 
 }
+controller.loadListJobs = async function () {
+    let currentUser = firebase.auth().currentUser.email
+    let currentJobsList = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .get()
+
+    let docs = currentJobsList.docs
+    let listJobs = transformDocs(docs)
+
+    model.saveListJobs(listJobs)
+    view.showListJobs()
+
+}
 controller.addJob = async function(dataPost){
 
-    let { titleJob, address, time, jobDescription, salary} = dataPost
+    // let { titleJob, address, time, jobDescription, salary} = dataPost
     try {
         await firebase.firestore().collection('postFindEmployee').add(dataPost)
         $("#add-job-modal").modal('hide');
@@ -77,55 +91,6 @@ controller.addJob = async function(dataPost){
 
 }
 
-controller.showJobsList = async function(){
-    let currentUser = firebase.auth().currentUser.email
-    let currentJobsList = await firebase
-        .firestore()
-        .collection('postFindEmployee')
-        .get()
-    
-    console.log(currentJobsList);
-    let docs = currentJobsList.docs
-    
-    let jobsList = transformDocs(docs)
-    for(let job of jobsList){    
-        if(job.applications.indexOf(currentUser) < 0){
-            let html = `
-            <div class="job-detail-container" id="${job.id}">
-                            <div class="job-detail-container-2">
-                                <div class="job-detail-left">
-                                    <a href="#">${job.postOwner}</a>
-                                </div>
-                                
-                                <div class="job-detail-center">
-                                    <div class="job-detail-wrapper">
-                                        <span>Loại CV:</span>
-                                        <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
-                                    </div>
-                                    <div class="job-detail-wrapper">
-                                        <span>Địa chỉ:</span>
-                                        <div class="job-detail" id="address">${job.address}</div>
-                                    </div>
-                                    <div class="job-detail-wrapper">
-                                        <span>Lương</span>
-                                        <div class="job-detail" id="salary">${job.salary}</div>
-                                    </div>
-                                    <div class="job-detail-wrapper">
-                                        <span>Thời gian:</span>
-                                        <div class="job-detail" id="time">${job.time}</div>
-                                    </div>
-                                    <div class="job-detail-wrapper">
-                                        <span>Mo ta cong viec:</span>
-                                        <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
-                                    </div>
-                                </div>
-                                <button class="apply-job-btn" onclick="jobApplyClickHandle(event,'${job.id}')">Apply</button>
-                        </div>`
-            document.getElementById('jobs-list-container').innerHTML += html       
-        }   
-    }
-        
-}
 
 controller.showPostedJobs = async function(){
     let currentUser = firebase.auth().currentUser.email

@@ -142,13 +142,12 @@ view.showComponents = function (name){
             let jobsPostedBtn = document.getElementById('posted-jobs')
             jobsPostedBtn.onclick = jobsPostedBtnClickHandle
 
-            let postBtn = document.getElementById('post-job')
-            postBtn.onclick = () => { $("#add-job-modal").modal('show');}
+            
 
             
 
             function findEmployeeBtnClickHandle () {
-                document.getElementById('main-content').innerHTML = components.listEmployee;
+                document.getElementById('main-content').innerHTML = components.listEmployee + components.postJob;
                 controller.showEmployee()
             }
             function profileEmployerBtnClickHandle () {
@@ -158,6 +157,10 @@ view.showComponents = function (name){
                 document.getElementById('main-content').innerHTML = components.postedJob;
                 controller.showPostedJobs()
             }
+
+            let postBtn = document.getElementById('post-job')
+            postBtn.onclick = () => { $("#add-job-modal").modal('show'); }
+
             let formPost = document.getElementById('form-post-job')
             formPost.onsubmit = submitFormPostHandle
             
@@ -183,7 +186,8 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
-            controller.showJobsList()
+            // controller.showJobsList()
+            controller.loadListJobs()
 
             document.getElementById('control-container').innerHTML = `
                 <div id="find-job" class="tab">
@@ -238,7 +242,44 @@ view.showComponents = function (name){
     }
 }
 
-
+view.showListJobs = function(){
+    for (let job of model.listJobs) {
+        let html = `
+        <div class="job-detail-container" id="${job.id}">
+                        <div class="job-detail-container-2">
+                            <div class="job-detail-left">
+                                <a href="#">${job.postOwner}</a>
+                            </div>
+                            
+                            <div class="job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">${job.address}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="time">${job.time}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Mo ta cong viec:</span>
+                                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                                </div>
+                            </div>
+                            <button class="apply-job-btn" onclick="jobApplyClickHandle(event,'${job.id}')">Apply</button>
+                    </div>`
+        document.getElementById('jobs-list-container').innerHTML += html
+        // if (job.applications.indexOf(currentUser) < 0) {
+        // }
+    }
+}
 
 view.setText = function (id,message){
     document.getElementById(id).innerHTML = message;
