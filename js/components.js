@@ -231,7 +231,7 @@ components.logIn = `
             </section>
 `
 
-components.controlBar = `<div id="control-bar">
+components.asideLeft = `<div id="aside-left">
                 <div id="avatar-container">
                     <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
                 </div>
@@ -353,8 +353,8 @@ components.postedJob = `
 components.employer = `
     <div id="control-bar-main-content-container">
 
-            ${components.controlBar}
-            <div id="main-wrapper">
+            ${components.asideLeft}
+            <div id="aside-right">
                 <div id="menu-btn"></div>
                 <div id="main-content">
                 ${components.listEmployee}
@@ -455,8 +455,8 @@ components.application = `
 components.jobSeeker = `
     <div id="control-bar-main-content-container">
 
-            ${components.controlBar}
-            <div id="main-wrapper">
+            ${components.asideLeft}
+            <div id="aside-right">
                 <div id="menu-btn"></div>
                 <div id="main-content">
                 ${components.listJobs}

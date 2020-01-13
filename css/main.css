@@ -313,7 +313,7 @@ select{
     justify-content: flex-start;
 }
 
-#control-bar{
+#aside-left{
     width: 20%;
     height: 100vh;
     display: flex;
@@ -355,7 +355,7 @@ select{
 .tab.active {
     box-shadow: #E5E5E5 ;
 }
-#main-wrapper{
+#aside-right{
     width: 80%;
     display: flex;
     flex-direction: column;
