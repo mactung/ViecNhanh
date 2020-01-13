@@ -21,8 +21,7 @@ model.saveListEmployees= function (employees){
 }
 model.savepostedJobs= function (postedJobs){
     model.postedJobs = postedJobs;
-    console.log(model.postedJobs);
-    
+    console.log(model.postedJobs); 
 }
 
 
