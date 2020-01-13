@@ -3,6 +3,7 @@ model = {
     postedJobs: null,
     appliedJobs : null,
     listJobs : null,
+    listEmployees : null,
 };
 
 model.saveInforCurrentUser = function (inforUser){
@@ -11,6 +12,11 @@ model.saveInforCurrentUser = function (inforUser){
 model.saveListJobs = function (jobs){
     model.listJobs = jobs;
     console.log(model.listJobs);
+    
+}
+model.saveListEmployees= function (employees){
+    model.listEmployees = employees;
+    console.log(model.listEmployees);
     
 }
 

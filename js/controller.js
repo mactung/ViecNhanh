@@ -77,6 +77,20 @@ controller.loadListJobs = async function () {
     view.showListJobs()
 
 }
+
+controller.loadEmployees = async function () {
+    let listEmployees = await firebase
+        .firestore()
+        .collection('users')
+        .where('permissionUser', '==', 'employee')
+        .get()
+    let docs = listEmployees.docs
+    let employees = transformDocs(docs)
+    model.saveListEmployees(employees)
+    view.showListEmployees()
+
+
+}
 controller.addJob = async function(dataPost){
 
     // let { titleJob, address, time, jobDescription, salary} = dataPost
@@ -186,60 +200,7 @@ controller.showJobApplications = async function(){
     }
 }
 
-controller.showEmployee = async function(){
-    let listEmployees = await firebase
-        .firestore()
-        .collection('users')
-        .where('permissionUser', '==', 'employee')
-        .get()
-    let docs = listEmployees.docs
-    let employees = transformDocs(docs)
-    for(let employee of employees){
-        let html = `
-        <div class="employees-detail-container" id="${employee.id}">
-                        <div class="employees-detail-container-2">
-                            <div class="employees-detail-left">
-                                <div class="personal-info-wrapper">
-                                    <span>Họ và tên:</span>
-                                    <div class="personal-info-detail" id="jobType">${employee.fullName}</div>
-                                </div>
-                                <div class="personal-info-wrapper">
-                                    <span>SĐT:</span>
-                                    <div class="personal-info-detail" id="address">${employee.mobileNumber}</div>
-                                </div>
-                                <div class="personal-info-wrapper">
-                                    <span>Ngày sinh: </span>
-                                    <div class="personal-info-detail" id="salary">${employee.dateOfBirth}</div>
-                                </div>
-                                <div class="personal-info-wrapper">
-                                    <span>Email: </span>
-                                    <div class="personal-info-detail" id="date">${employee.email}</div>
-                                </div>
-                            </div>
-                            <div class="employees-detail-center">
-                                <div class="personal-info-wrapper">
-                                    <span>Giới tính: </span>
-                                    <div class="personal-info-detail" id="date">${employee.gender}</div>
-                                </div>
-                                <div class="personal-info-wrapper">
-                                    <span>Địa chỉ: </span>
-                                    <div class="personal-info-detail" id="date">${employee.city}</div>
-                                </div>
-                                <div class="personal-info-wrapper">
-                                    <span>Job Tags: </span>
-                                    <div class="personal-info-detail" id="date">abc</div>
-                                </div>
-                                <div class="personal-info-wrapper">
-                                    <span>Rate</span>
-                                    <div class="personal-info-detail" id="date">${employee.rate}</div>
-                                </div>
-                            </div>
-                            <button class="choose-employee-btn">Choose</button>
-                    </div>`
-        document.getElementById('employees-list-container').innerHTML += html
-    }
-    
-}
+
 
 controller.updateApplication = async function(id){
     let currentUser = firebase.auth().currentUser.email

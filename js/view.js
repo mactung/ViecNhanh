@@ -117,7 +117,7 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.employer;
-            controller.showEmployee()
+            controller.loadEmployees()
 
             document.getElementById('control-container').innerHTML = `
                 <div id="find-empployee" class="tab">
@@ -141,14 +141,19 @@ view.showComponents = function (name){
 
             let jobsPostedBtn = document.getElementById('posted-jobs')
             jobsPostedBtn.onclick = jobsPostedBtnClickHandle
-
+            let postBtn = document.getElementById('post-job')
+            postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click");
+             }
             
 
             
 
             function findEmployeeBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.listEmployee + components.postJob;
-                controller.showEmployee()
+                controller.loadEmployees()
+                let postBtn = document.getElementById('post-job')
+                postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click")}
+
             }
             function profileEmployerBtnClickHandle () {
                 document.getElementById('main-content').innerHTML = components.employerProfile;
@@ -158,8 +163,7 @@ view.showComponents = function (name){
                 controller.showPostedJobs()
             }
 
-            let postBtn = document.getElementById('post-job')
-            postBtn.onclick = () => { $("#add-job-modal").modal('show'); }
+            
 
             let formPost = document.getElementById('form-post-job')
             formPost.onsubmit = submitFormPostHandle
@@ -213,8 +217,8 @@ view.showComponents = function (name){
             applicationJobsBtn.onclick = applicationJobsBtnClickHandle
     
             function findJobBtnClickHandle() {
-                controller.showJobsList()
                 document.getElementById('main-content').innerHTML = components.listJobs;
+                controller.loadListJobs()
             }
             function profileEmployeeBtnClickHandle() {
                 document.getElementById('main-content').innerHTML = components.employeeProfile;
@@ -278,6 +282,53 @@ view.showListJobs = function(){
         document.getElementById('jobs-list-container').innerHTML += html
         // if (job.applications.indexOf(currentUser) < 0) {
         // }
+    }
+}
+view.showListEmployees = function () {
+    
+    for (let employee of model.listEmployees) {
+        let html = `
+                    <div class="employees-detail-container" id="${employee.id}">
+                        <div class="employees-detail-container-2">
+                            <div class="employees-detail-left">
+                                <div class="personal-info-wrapper">
+                                    <span>Họ và tên:</span>
+                                    <div class="personal-info-detail" id="jobType">${employee.fullName}</div>
+                                </div>
+                                <div class="personal-info-wrapper">
+                                    <span>SĐT:</span>
+                                    <div class="personal-info-detail" id="address">${employee.mobileNumber}</div>
+                                </div>
+                                <div class="personal-info-wrapper">
+                                    <span>Ngày sinh: </span>
+                                    <div class="personal-info-detail" id="salary">${employee.dateOfBirth}</div>
+                                </div>
+                                <div class="personal-info-wrapper">
+                                    <span>Email: </span>
+                                    <div class="personal-info-detail" id="date">${employee.email}</div>
+                                </div>
+                            </div>
+                            <div class="employees-detail-center">
+                                <div class="personal-info-wrapper">
+                                    <span>Giới tính: </span>
+                                    <div class="personal-info-detail" id="date">${employee.gender}</div>
+                                </div>
+                                <div class="personal-info-wrapper">
+                                    <span>Địa chỉ: </span>
+                                    <div class="personal-info-detail" id="date">${employee.city}</div>
+                                </div>
+                                <div class="personal-info-wrapper">
+                                    <span>Job Tags: </span>
+                                    <div class="personal-info-detail" id="date">abc</div>
+                                </div>
+                                <div class="personal-info-wrapper">
+                                    <span>Rate</span>
+                                    <div class="personal-info-detail" id="date">${employee.rate}</div>
+                                </div>
+                            </div>
+                            <button class="choose-employee-btn">Choose</button>
+                    </div>`
+        document.getElementById('employees-list-container').innerHTML += html
     }
 }
 
