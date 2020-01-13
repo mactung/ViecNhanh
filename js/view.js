@@ -259,13 +259,16 @@ view.showListJobs = function(){
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="apply-job-btn" ${(
-                                model.inforCurrentUser.jobApply && 
-                                model.inforCurrentUser.jobApply !== job.id) ? 
-                                    'disabled="true"' : ""} 
+                            <button class="apply-job-btn" 
+                            
                                 id="${job.id}">${textButton}</button>
                             
                     </div>`
+// ${(
+//                                 model.inforCurrentUser.jobApply && 
+//                                 model.inforCurrentUser.jobApply !== job.id) ? 
+//                                     'disabled="true"' : ""} 
+                    
         document.getElementById('jobs-list-container').innerHTML += html
         
     }
@@ -346,7 +349,7 @@ view.showListEmployees = function () {
 view.showPostedJobs = function(){
     for (let job of model.postedJobs) {
         let html = `
-        <div class="posted-job-detail-container">
+        <div class="posted-job-detail-container" id="${job.id}-container">>
                         <div class="posted-job-detail-container-2">
                             <div class="posted-job-detail-left">
                                 <a href="#">${job.postOwner}</a>
@@ -379,15 +382,25 @@ view.showPostedJobs = function(){
                                     
                                 
                             </div>
-                            <button class="delete-posted-job-btn" >Delete</button>
+                            <button class="delete-posted-job-btn" id="${job.id}">Delete</button>
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
-        for (let employee of job.applications){
-            document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
-            <span>${employee}</span>
-            <button>Accept</button>
-            </li>`
-        }
+        // for (let employee of job.applications){
+        //     document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
+        //     <span>${employee}</span>
+        //     <button>Accept</button>
+        //     </li>`
+        // }    
+    }
+
+    for(let job of model.postedJobs){
+        document.getElementById(job.id).onclick = jobDeleteClickHandle
+        function jobDeleteClickHandle(){
+            console.log('clicked');
+            
+            controller.deletePostedJob(job.id)
+            document.getElementById(`${job.id}-container`).outerHTML = ''
+        }   
     }
 }
 view.postJobHandler = function(){

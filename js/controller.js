@@ -93,8 +93,13 @@ controller.loadEmployees = async function () {
 }
 controller.addJob = async function(dataPost){
     // let { titleJob, address, time, jobDescription, salary} = dataPost
+    console.log(dataPost);
+    
     try {
-        await firebase.firestore().collection('postFindEmployee').add(dataPost)
+        await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .add(dataPost)
         $("#add-job-modal").modal('hide');
 
     }catch (err){
@@ -128,7 +133,7 @@ controller.showJobApplications = async function(){
     let jobsList = transformDocs(docs)
     for(let job of jobsList){
         let html = `
-        <div class="applied-job-detail-container" id="${job.id}">
+        <div class="applied-job-detail-container" id="${job.id}-container">
                         <div class="applied-job-detail-container-2">
                             <div class="applied-job-detail-left">
                                 <a href="#">${job.postOwner}</a>
@@ -156,10 +161,18 @@ controller.showJobApplications = async function(){
                                     <div class="job-detail" id="time">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="cancel-applied-job-btn" onclick="jobCancelClickHandle(event,'${job.id}')">Cancel</button>
+                            <button class="cancel-applied-job-btn" id="${job.id}")">Cancel</button>
                     </div>`
         
         document.getElementById('applied-jobs-list-container').innerHTML += html
+    }
+    for (let job of jobsList){
+        document.getElementById(job.id).onclick = jobApplicationCancelClickHandle
+        function jobApplicationCancelClickHandle(){
+            console.log(job.id);           
+            controller.cancelJobApplying(job.id, model.inforCurrentUser.email)
+            document.getElementById(`${job.id}-container`).outerHTML = ''
+        }      
     }
 }
 
@@ -176,7 +189,7 @@ controller.applyJob = async function(idPost, emailUserApply){
             .collection('users')
             .doc(model.inforCurrentUser.id)
             .update({
-                jobApply: idPost,
+                jobApply: firebase.firestore.FieldValue.arrayUnion(idPost),
             })
 }
 controller.cancelJobApplying = async function (idPost, emailUserCancel){
@@ -194,7 +207,7 @@ controller.cancelJobApplying = async function (idPost, emailUserCancel){
         .doc(model.inforCurrentUser.id)
         .update({
             busy: false,
-            jobApply: '',
+            jobApply: firebase.firestore.FieldValue.arrayRemove(idPost),
         })
 }
 // controller.updateApplication = async function(id){
@@ -202,18 +215,18 @@ controller.cancelJobApplying = async function (idPost, emailUserCancel){
 //     let updateApplication = 
 // }
 
-controller.cancelApplication = async function(id){
-    let currentUser = firebase.auth().currentUser.email
-    let cancelApplication = await firebase
-        .firestore()
-        .collection('postFindEmployee')
-        .doc(id)
-        .update({
-            applications: firebase.firestore.FieldValue.arrayRemove(currentUser)
-        })
-}
+// controller.cancelApplication = async function(id){
+//     let currentUser = firebase.auth().currentUser.email
+//     let cancelApplication = await firebase
+//         .firestore()
+//         .collection('postFindEmployee')
+//         .doc(id)
+//         .update({
+//             applications: firebase.firestore.FieldValue.arrayRemove(currentUser)
+//         })
+// }
 
-controller.cancelPostedJob = async function(id){
+controller.deletePostedJob = async function(id){
     let currentUser = firebase.auth().currentUser.email
     let cancelJob = await firebase
         .firestore()
