@@ -276,12 +276,14 @@ view.showListJobs = function(){
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="apply-job-btn" id="${job.id}">${textButton}</button>
+                            <button class="apply-job-btn" ${(
+                                model.inforCurrentUser.jobApply && 
+                                model.inforCurrentUser.jobApply !== job.id) ? 
+                                    'disabled="true"' : ""} 
+                                id="${job.id}">${textButton}</button>
                             
                     </div>`
         document.getElementById('jobs-list-container').innerHTML += html
-
-        
         
     }
     for (let job of model.listJobs){
@@ -292,7 +294,6 @@ view.showListJobs = function(){
                 document.getElementById(job.id).innerHTML = 'Cancel'
             }else {
                 console.log(model.inforCurrentUser.email);
-                
                 controller.cancelJobApplying(job.id, model.inforCurrentUser.email)
                 document.getElementById(job.id).innerHTML = 'Apply'
             }

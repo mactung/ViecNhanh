@@ -172,12 +172,12 @@ controller.applyJob = async function(idPost, emailUserApply){
         .update({
             applications: firebase.firestore.FieldValue.arrayUnion(emailUserApply)
         })
-    // await firebase.firestore()
-    //         .collection('users')
-    //         .doc(model.inforCurrentUser.id)
-    //         .update({
-    //             busy: true,
-    //         })
+    await firebase.firestore()
+            .collection('users')
+            .doc(model.inforCurrentUser.id)
+            .update({
+                jobApply: idPost,
+            })
 }
 controller.cancelJobApplying = async function (idPost, emailUserCancel){
     console.log('click');
@@ -194,6 +194,7 @@ controller.cancelJobApplying = async function (idPost, emailUserCancel){
         .doc(model.inforCurrentUser.id)
         .update({
             busy: false,
+            jobApply: '',
         })
 }
 // controller.updateApplication = async function(id){
