@@ -625,7 +625,7 @@ select{
 }
 
 .posted-job-detail-container{
-    height: 150px;
+    height: auto;
     width: 900px;
     background: #ffffff;
     border-radius: 5px;

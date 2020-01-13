@@ -92,7 +92,6 @@ controller.loadEmployees = async function () {
 
 }
 controller.addJob = async function(dataPost){
-
     // let { titleJob, address, time, jobDescription, salary} = dataPost
     try {
         await firebase.firestore().collection('postFindEmployee').add(dataPost)
@@ -101,12 +100,10 @@ controller.addJob = async function(dataPost){
     }catch (err){
         setText('post-noti',err)
     }
-
-
 }
 
 
-controller.showPostedJobs = async function(){
+controller.loadPostedJobs = async function(){
     let currentUser = firebase.auth().currentUser.email
     let postedJobsList = await firebase
         .firestore()
@@ -116,42 +113,8 @@ controller.showPostedJobs = async function(){
     
     let docs = postedJobsList.docs
     let jobsList = transformDocs(docs)
-    model.postedJob = jobsList
-
-    for(let job of jobsList){
-        let html = `
-        <div class="posted-job-detail-container" id="${job.id}">
-                        <div class="posted-job-detail-container-2">
-                            <div class="posted-job-detail-left">
-                                <a href="#">${job.postOwner}</a>
-                            </div>
-                            
-                            <div class="posted-job-detail-center">
-                                <div class="job-detail-wrapper">
-                                    <span>Loại CV:</span>
-                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Địa chỉ:</span>
-                                    <div class="job-detail" id="address">${job.address}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Lương</span>
-                                    <div class="job-detail" id="salary">${job.salary}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Thời gian:</span>
-                                    <div class="job-detail" id="time">${job.time}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Mô tả công việc:</span>
-                                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
-                                </div>
-                            </div>
-                            <button class="cancel-posted-job-btn" onclick="postedJobCancelClickHandle(event,'${job.id}')">Cancel</button>
-                    </div>`
-        document.getElementById('posted-jobs-list-container').innerHTML += html
-    }
+    model.savepostedJobs(jobsList)
+    view.showPostedJobs()
 }
 
 controller.showJobApplications = async function(){
@@ -201,17 +164,42 @@ controller.showJobApplications = async function(){
 }
 
 
-
-controller.updateApplication = async function(id){
-    let currentUser = firebase.auth().currentUser.email
-    let updateApplication = await firebase
+controller.applyJob = async function(idPost, emailUserApply){
+    await firebase
         .firestore()
         .collection('postFindEmployee')
-        .doc(id)
+        .doc(idPost)
         .update({
-            applications: firebase.firestore.FieldValue.arrayUnion(currentUser)
+            applications: firebase.firestore.FieldValue.arrayUnion(emailUserApply)
+        })
+    // await firebase.firestore()
+    //         .collection('users')
+    //         .doc(model.inforCurrentUser.id)
+    //         .update({
+    //             busy: true,
+    //         })
+}
+controller.cancelJobApplying = async function (idPost, emailUserCancel){
+    console.log('click');
+    
+    await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .doc(idPost)
+        .update({
+            applications: firebase.firestore.FieldValue.arrayRemove(emailUserCancel)
+        })
+    await firebase.firestore()
+        .collection('users')
+        .doc(model.inforCurrentUser.id)
+        .update({
+            busy: false,
         })
 }
+// controller.updateApplication = async function(id){
+//     let currentUser = firebase.auth().currentUser.email
+//     let updateApplication = 
+// }
 
 controller.cancelApplication = async function(id){
     let currentUser = firebase.auth().currentUser.email

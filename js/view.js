@@ -10,10 +10,10 @@ view.showComponents = function (name){
             app.innerHTML = components.welcomePage
 
             let employerRegisterBtn = document.getElementById('employer-sign-up-btn')
-            employerRegisterBtn.onclick = employerRegisterBtnClickHandle
+            employerRegisterBtn.onclick = employerRegisterBtnClickHandler
 
             let jobSeekerRegisterBtn = document.getElementById('job-seeker-sign-up-btn')
-            jobSeekerRegisterBtn.onclick = jobSeekerRegisterBtnClickHandle
+            jobSeekerRegisterBtn.onclick = jobSeekerRegisterBtnClickHandler
 
             let loginBtn = document.getElementById('already-have-account-btn')
             loginBtn.onclick = () =>{
@@ -22,11 +22,11 @@ view.showComponents = function (name){
 
 
 
-            function employerRegisterBtnClickHandle(){
+            function employerRegisterBtnClickHandler(){
                 view.showComponents('employerRegister');
             }
             
-            function jobSeekerRegisterBtnClickHandle(){
+            function jobSeekerRegisterBtnClickHandler(){
                 view.showComponents('jobSeekerRegister');
             }
             
@@ -36,9 +36,9 @@ view.showComponents = function (name){
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeekerRegister;
             let formRegister = document.getElementById('form-register');
-            formRegister.onsubmit = registerSubmitHandle;
+            formRegister.onsubmit = registerSubmitHandler;
 
-            function registerSubmitHandle (event){
+            function registerSubmitHandler (event){
                 event.preventDefault();
                 
                 let dataUser = {
@@ -70,9 +70,9 @@ view.showComponents = function (name){
             let formRegister = document.getElementById('form-register');
 
             let registerSubmitBtn = document.getElementById('register-submit-btn');
-            registerSubmitBtn.onclick = registerSubmitHandle;
+            registerSubmitBtn.onclick = registerSubmitHandler;
 
-            function registerSubmitHandle (event){
+            function registerSubmitHandler (event){
                 event.preventDefault();
                 
                 let dataUser = {
@@ -105,9 +105,9 @@ view.showComponents = function (name){
             app.innerHTML = components.logIn;
 
             let formLogIn = document.getElementById('log-in-form');
-            formLogIn.onsubmit = loginBtnSubmitHandle
+            formLogIn.onsubmit = loginBtnSubmitHandler
 
-            function loginBtnSubmitHandle(e) {
+            function loginBtnSubmitHandler(e) {
                 e.preventDefault();
                 controller.logIn({email: formLogIn.email.value, password : formLogIn.password.value})
             }
@@ -133,13 +133,13 @@ view.showComponents = function (name){
             `
 
             let findEmployeeBtn = document.getElementById('find-empployee')
-            findEmployeeBtn.onclick = findEmployeeBtnClickHandle
+            findEmployeeBtn.onclick = findEmployeeBtnClickHandler
 
             let profileEmployerBtn = document.getElementById('personal-profile')
-            profileEmployerBtn.onclick = profileEmployerBtnClickHandle
+            profileEmployerBtn.onclick = profileEmployerBtnClickHandler
 
             let jobsPostedBtn = document.getElementById('posted-jobs')
-            jobsPostedBtn.onclick = jobsPostedBtnClickHandle
+            jobsPostedBtn.onclick = jobsPostedBtnClickHandler
             let postBtn = document.getElementById('post-job')
             postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click");
              }
@@ -147,27 +147,27 @@ view.showComponents = function (name){
 
             
 
-            function findEmployeeBtnClickHandle () {
+            function findEmployeeBtnClickHandler () {
                 document.getElementById('main-content').innerHTML = components.listEmployee + components.postJob;
                 controller.loadEmployees()
                 let postBtn = document.getElementById('post-job')
                 postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click")}
 
             }
-            function profileEmployerBtnClickHandle () {
+            function profileEmployerBtnClickHandler () {
                 document.getElementById('main-content').innerHTML = components.employerProfile;
             }
-            function jobsPostedBtnClickHandle () {
+            function jobsPostedBtnClickHandler () {
                 document.getElementById('main-content').innerHTML = components.postedJob;
-                controller.showPostedJobs()
+                controller.loadPostedJobs()
             }
 
             
 
             let formPost = document.getElementById('form-post-job')
-            formPost.onsubmit = submitFormPostHandle
+            formPost.onsubmit = submitFormPostHandler
             
-            function submitFormPostHandle(e){
+            function submitFormPostHandler(e){
                 let currentUser = firebase.auth().currentUser.email
                 e.preventDefault()
                 dataPost = {
@@ -205,23 +205,27 @@ view.showComponents = function (name){
                     `
 
             let findJobBtn = document.getElementById('find-job')
-            findJobBtn.onclick = findJobBtnClickHandle
+            findJobBtn.onclick = findJobBtnClickHandler
 
             let profileEmployeeBtn = document.getElementById('employee-profile')
-            profileEmployeeBtn.onclick = profileEmployeeBtnClickHandle
+            profileEmployeeBtn.onclick = profileEmployeeBtnClickHandler
 
             let applicationJobsBtn = document.getElementById('application-jobs')
-            applicationJobsBtn.onclick = applicationJobsBtnClickHandle
+            applicationJobsBtn.onclick = applicationJobsBtnClickHandler
+
+            
+
+            
     
-            function findJobBtnClickHandle() {
+            function findJobBtnClickHandler() {
                 document.getElementById('main-content').innerHTML = components.listJobs;
                 controller.loadListJobs()
             }
-            function profileEmployeeBtnClickHandle() {
+            function profileEmployeeBtnClickHandler() {
                 document.getElementById('main-content').innerHTML = components.employeeProfile;
                 
             }
-            function applicationJobsBtnClickHandle() {
+            function applicationJobsBtnClickHandler() {
                 document.getElementById('main-content').innerHTML = components.application;
                 controller.showJobApplications()
             }
@@ -239,8 +243,12 @@ view.showComponents = function (name){
 
 view.showListJobs = function(){
     for (let job of model.listJobs) {
+        let textButton = 'Apply';
+        if(job.applications.includes(firebase.auth().currentUser.email)){
+            textButton = 'Cancel'
+        }
         let html = `
-        <div class="job-detail-container" id="${job.id}">
+        <div class="job-detail-container" >
                         <div class="job-detail-container-2">
                             <div class="job-detail-left">
                                 <a href="#">${job.postOwner}</a>
@@ -268,16 +276,36 @@ view.showListJobs = function(){
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="apply-job-btn" onclick="jobApplyClickHandle(event,'${job.id}')">Apply</button>
+                            <button class="apply-job-btn" id="${job.id}">${textButton}</button>
+                            
                     </div>`
         document.getElementById('jobs-list-container').innerHTML += html
+
+        
+        
     }
+    for (let job of model.listJobs){
+        document.getElementById(job.id).onclick = applyBtnClickHandler
+        function applyBtnClickHandler() {
+            if (document.getElementById(job.id).innerHTML == 'Apply'){
+                controller.applyJob(job.id, model.inforCurrentUser.email) 
+                document.getElementById(job.id).innerHTML = 'Cancel'
+            }else {
+                console.log(model.inforCurrentUser.email);
+                
+                controller.cancelJobApplying(job.id, model.inforCurrentUser.email)
+                document.getElementById(job.id).innerHTML = 'Apply'
+            }
+
+        }
+    }
+    
 }
 view.showListEmployees = function () {
     
     for (let employee of model.listEmployees) {
         let html = `
-                    <div class="employees-detail-container" id="${employee.id}">
+                    <div class="employees-detail-container"">
                         <div class="employees-detail-container-2">
                             <div class="employees-detail-left">
                                 <div class="personal-info-wrapper">
@@ -315,9 +343,67 @@ view.showListEmployees = function () {
                                     <div class="personal-info-detail" id="date">${employee.rate}</div>
                                 </div>
                             </div>
-                            <button class="choose-employee-btn">Choose</button>
+                            <button class="choose-employee-btn" id="${employee.id}">Choose</button>
                     </div>`
         document.getElementById('employees-list-container').innerHTML += html
+    }
+    for (let employee of model.listEmployees) {
+        document.getElementById(employee.id).onclick = ChosseBtnClickHandler
+        function ChosseBtnClickHandler() {
+            console.log('click');
+            console.log(model.inforCurrentUser.id);
+            console.log(job.id);
+            controller.chosseEmployee(job.id, model.inforCurrentUser.email)
+
+        }
+    }
+}
+
+view.showPostedJobs = function(){
+    for (let job of model.postedJobs) {
+        let html = `
+        <div class="posted-job-detail-container">
+                        <div class="posted-job-detail-container-2">
+                            <div class="posted-job-detail-left">
+                                <a href="#">${job.postOwner}</a>
+                            </div>
+                            
+                            <div class="posted-job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">${job.address}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="time">${job.time}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Mô tả công việc:</span>
+                                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                                </div>
+                                <div id="list-empolyee-apply">
+                                        
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                            <button class="delete-posted-job-btn" >Delete</button>
+                    </div>`
+        document.getElementById('posted-jobs-list-container').innerHTML += html
+        for (let employee of job.applications){
+            document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
+            <span>${employee}</span>
+            <button>Accept</button>
+            </li>`
+        }
     }
 }
 view.displayInforUser = function () {
@@ -326,7 +412,6 @@ view.displayInforUser = function () {
     view.setText('dateOfBirth', model.inforCurrentUser.dateOfBirth)
     view.setText('mobileNumber', model.inforCurrentUser.mobileNumber)
     view.setText('email', model.inforCurrentUser.email)
-    // view.setText('self-description', model.inforCurrentUser.description)
     view.setText('city', model.inforCurrentUser.city)
 }
 
@@ -349,22 +434,4 @@ function allPassed(validateResults) {
         }
         return true
     }
-}
-
-function jobApplyClickHandle(event,id) {
-    event.preventDefault()
-    controller.updateApplication(id)
-    document.getElementById(id).outerHTML = ''
-}
-
-function jobCancelClickHandle(event,id) {
-    event.preventDefault()
-    controller.cancelApplication(id)
-    document.getElementById(id).outerHTML = ''
-}
-
-function postedJobCancelClickHandle(event,id) {
-    event.preventDefault()
-    controller.cancelPostedJob(id)
-    document.getElementById(id).outerHTML = ''
 }
