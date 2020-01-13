@@ -318,6 +318,7 @@ select{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     background: #F6EAEA;
     border-right: solid black 1px;
@@ -348,6 +349,12 @@ select{
     text-align: center;
     color: white;
 }
+
+.tab:hover {
+    background-color: red;
+    opacity: 0.5;
+}
+
 .tab >*{
    line-height: 60px;
     
@@ -637,7 +644,7 @@ select{
 .posted-job-detail-container-2{
     display: flex;
     justify-content: space-between;
-    height: 100%;
+    height: auto;
     padding: 20px;
 }
 
@@ -729,4 +736,82 @@ select{
     border-radius: 5px;
     border: none;
 }
- 
+/* pop up choose job */
+#choose-job-list-container{
+    background: #F6EAEA;
+    height: 450px;
+    width: 1000px;
+    align-self: center;
+    border-radius: 10px;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+/* button style */
+.btn-danger{
+    height: 40px;
+    width: 100px;
+    align-self: center;
+}
+
+.btn-success{
+    height: 40px;
+    width: 100px;
+    align-self: center;
+    margin-right: 5px; 
+}
+.btn-info{
+    height: 40px;
+    width: 100px;
+    align-self: center;
+}
+/* job offers */
+
+#job-offers-header{
+    padding: 20px;
+}
+
+#job-offers-container{
+    background: #F6EAEA;
+    height: 500px;
+    width: 1000px;
+    align-self: center;
+    border-radius: 10px;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+.job-offers-detail-container{
+    height: 150px;
+    width: 900px;
+    background: #ffffff;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.job-offers-detail-container-2{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+}
+
+.job-offers-detail-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.job-offers-detail-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 500px;
+}
+
+.job-offers-detail-center>*{
+    text-align: left;
+}  
+

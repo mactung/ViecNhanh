@@ -267,6 +267,19 @@ components.asideLeft = `<div id="aside-left">
                     
                 </div>
             </div>`
+components.chooseJobForEmployee = `
+    <div class="modal fade" id="choose-job-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="modal-choose-job">
+                <div id="choose-job-list-container">
+                    
+                    
+                </div>    
+            </div>
+        </div>
+    </div>
+`
 components.postJob = `
 <div class="modal fade" id="add-job-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -361,6 +374,7 @@ components.employer = `
                 <div id="main-content">
                 ${components.listEmployee}
                 ${components.postJob}
+                ${components.chooseJobForEmployee}
                 </div>
             </div>
 
@@ -453,6 +467,17 @@ components.application = `
                     
                 </div>
             
+`
+components.jobOffers=`
+<div id="job-offers-header">
+                    Job offers: 
+                </div>
+                
+                <div id="job-offers-container">
+                    
+               </div>
+            
+        </div>  
 `
 components.jobSeeker = `
     <div id="control-bar-main-content-container">
