@@ -118,8 +118,9 @@ view.showComponents = function (name){
             let app = document.getElementById('app');
             app.innerHTML = components.employer;
             controller.loadEmployees()
+            view.displayInforUser()
 
-            document.getElementById('control-container').innerHTML = `
+            document.getElementById('menu-btn').innerHTML = `
                 <div id="find-empployee" class="tab">
                         <span>Tìm người</span>
                     </div>
@@ -130,8 +131,6 @@ view.showComponents = function (name){
                         <span>Công việc đã đăng</span>
                     </div>
             `
-            document.getElementById('full-name-bar').innerHTML = 
-                model.inforCurrentUser.fullName
 
             let findEmployeeBtn = document.getElementById('find-empployee')
             findEmployeeBtn.onclick = findEmployeeBtnClickHandle
@@ -190,22 +189,20 @@ view.showComponents = function (name){
             
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
-            // controller.showJobsList()
             controller.loadListJobs()
+            view.displayInforUser()
 
-            document.getElementById('control-container').innerHTML = `
+            document.getElementById('menu-btn').innerHTML = `
                 <div id="find-job" class="tab">
                         <span>Tìm việc</span>
-                    </div>
-                    <div id="employee-profile" class="tab">
-                        <span>Thông tin cá nhân</span>
                     </div>
                     <div id="application-jobs" class="tab">
                         <span>Công việc đã chọn</span>
                     </div>
-            `
-            document.getElementById('full-name-bar').innerHTML =
-                model.inforCurrentUser.fullName
+                    <div id="employee-profile" class="tab">
+                        <span>Trang cá nhân</span>
+                    </div>
+                    `
 
             let findJobBtn = document.getElementById('find-job')
             findJobBtn.onclick = findJobBtnClickHandle
@@ -222,13 +219,7 @@ view.showComponents = function (name){
             }
             function profileEmployeeBtnClickHandle() {
                 document.getElementById('main-content').innerHTML = components.employeeProfile;
-                view.setText('fullName',model.inforCurrentUser.fullName)
-                view.setText('gender',model.inforCurrentUser.gender)
-                view.setText('dateOfBirth', model.inforCurrentUser.dateOfBirth)
-                view.setText('mobileNumber', model.inforCurrentUser.mobileNumber)
-                view.setText('email', model.inforCurrentUser.email)
-                view.setText('self-description', model.inforCurrentUser.description)
-                view.setText('city', model.inforCurrentUser.city)
+                
             }
             function applicationJobsBtnClickHandle() {
                 document.getElementById('main-content').innerHTML = components.application;
@@ -280,8 +271,6 @@ view.showListJobs = function(){
                             <button class="apply-job-btn" onclick="jobApplyClickHandle(event,'${job.id}')">Apply</button>
                     </div>`
         document.getElementById('jobs-list-container').innerHTML += html
-        // if (job.applications.indexOf(currentUser) < 0) {
-        // }
     }
 }
 view.showListEmployees = function () {
@@ -330,6 +319,15 @@ view.showListEmployees = function () {
                     </div>`
         document.getElementById('employees-list-container').innerHTML += html
     }
+}
+view.displayInforUser = function () {
+    view.setText('fullName', model.inforCurrentUser.fullName)
+    view.setText('gender', model.inforCurrentUser.gender)
+    view.setText('dateOfBirth', model.inforCurrentUser.dateOfBirth)
+    view.setText('mobileNumber', model.inforCurrentUser.mobileNumber)
+    view.setText('email', model.inforCurrentUser.email)
+    // view.setText('self-description', model.inforCurrentUser.description)
+    view.setText('city', model.inforCurrentUser.city)
 }
 
 view.setText = function (id,message){

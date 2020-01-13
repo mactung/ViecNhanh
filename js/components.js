@@ -235,10 +235,34 @@ components.controlBar = `<div id="control-bar">
                 <div id="avatar-container">
                     <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
                 </div>
-                <div id="full-name-bar">
+                <div id="infor-user-basic">
+                    <div class="infor-wrapper">
+                        <span>Họ và tên: </span>
+                        <span id="fullName"></span>
+                    </div>
+                    <div class="infor-wrapper">
+                        <span>Giới tính: </span>
+                        <span id="gender"></span>
+                    </div>
+                    <div class="infor-wrapper">
+                        <span>Ngày sinh: </span>
+                        <span id="dateOfBirth"></span>
+                    </div>
+                    <div class="infor-wrapper">
+                        <span>Số điện thoại: </span>
+                        <span id="mobileNumber"></span>
+                    </div>
+                    <div class="infor-wrapper">
+                        <span>email: </span>
+                        <span id="email"></span>
+                    </div>
+                    <div class="infor-wrapper">
+                        <span>Thành Phố: </span>
+                        <span id="city"></span>
+                    </div>
                 </div>
 
-
+                <button onclick="controller.logOut()">Log Out</button>
                 <div id="control-container">
                     
                 </div>
@@ -316,38 +340,9 @@ components.listEmployee = `
                 </div>
                 </div>
 `
-components.employerProfile = `
-<div id="employer-profile-container">
-                    <div id="employer-personal-info">
-                        
-                            <div class="profile-wrapper">
-                                <span>Họ và tên :</span>
-                                <div class="profile-line" id="fullName">Nguyễn Văn A</div>
-                            </div>
-                            <div class="profile-wrapper">
-                                <span>Số điện thoại :</span>
-                                <div class="profile-line" id="mobileNumber">0336275142</div>
-                            </div>
-                            <div class="profile-wrapper">
-                                <span>Email :</span>
-                                <div class="profile-line" id="email">nguyenvana@gmail.com</div>
-                            </div>
-                            <div class="profile-wrapper">
-                                <span>Thành phố :</span>
-                                <div class="profile-line" id="city">Hà Nội</div>
-                            </div>
-                            <div class="profile-wrapper">
-                                <span>Quận/Huyện :</span>
-                                <div class="profile-line" id="district">Thanh Xuân</div>
-                            </div>
-                        
-                    </div>
 
-                    <button>Edit</button>
-                </div>
-`
 components.postedJob = `
-<div id="posted-jobs-header">
+                <div id="posted-jobs-header">
                     Posted Jobs:
                 </div>
                 <div id="posted-jobs-list-container">
@@ -355,13 +350,16 @@ components.postedJob = `
                 </div>
             </div>
 `
-components.employer = `${components.nav}
+components.employer = `
     <div id="control-bar-main-content-container">
 
             ${components.controlBar}
-            <div id="main-content">
-            ${components.listEmployee}
-            ${components.postJob}
+            <div id="main-wrapper">
+                <div id="menu-btn"></div>
+                <div id="main-content">
+                ${components.listEmployee}
+                ${components.postJob}
+                </div>
             </div>
 
         </div>  
@@ -454,13 +452,16 @@ components.application = `
                 </div>
             
 `
-components.jobSeeker = `${components.nav}
+components.jobSeeker = `
     <div id="control-bar-main-content-container">
 
             ${components.controlBar}
-            <div id="main-content">
-            ${components.listJobs}
+            <div id="main-wrapper">
+                <div id="menu-btn"></div>
+                <div id="main-content">
+                ${components.listJobs}
 
+                </div>
             </div>
         
         </div>  `

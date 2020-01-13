@@ -314,8 +314,8 @@ select{
 }
 
 #control-bar{
-    width: 300px;
-    height: calc(100vh - 60px);
+    width: 20%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -335,16 +335,11 @@ select{
     width: 50%;
     align-self: center;
 }
-
-#control-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background: #F6EAEA;
-    height: 100vh;
-    width: 100%;
+#infor-user-basic>*{
+    margin-bottom: 10px;
 }
+
+
 .tab {
     width: 80%;
     height: 60px;
@@ -359,6 +354,15 @@ select{
 }
 .tab.active {
     box-shadow: #E5E5E5 ;
+}
+#main-wrapper{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+#menu-btn {
+    display: flex;
+
 }
 
 #main-content{
@@ -725,3 +729,4 @@ select{
     border-radius: 5px;
     border: none;
 }
+ 
