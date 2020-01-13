@@ -228,7 +228,7 @@ controller.cancelJobApplying = async function (idPost, emailUserCancel){
 
 controller.deletePostedJob = async function(id){
     let currentUser = firebase.auth().currentUser.email
-    let cancelJob = await firebase
+    await firebase
         .firestore()
         .collection('postFindEmployee')
         .doc(id)

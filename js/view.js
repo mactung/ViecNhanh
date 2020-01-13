@@ -259,9 +259,7 @@ view.showListJobs = function(){
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="apply-job-btn" 
-                            
-                                id="${job.id}">${textButton}</button>
+                            <button class="apply-job-btn" id="${job.id}">${textButton}</button>
                             
                     </div>`
 // ${(
@@ -349,7 +347,7 @@ view.showListEmployees = function () {
 view.showPostedJobs = function(){
     for (let job of model.postedJobs) {
         let html = `
-        <div class="posted-job-detail-container" id="${job.id}-container">>
+        <div class="posted-job-detail-container" id="${job.id}-container">
                         <div class="posted-job-detail-container-2">
                             <div class="posted-job-detail-left">
                                 <a href="#">${job.postOwner}</a>
@@ -385,12 +383,12 @@ view.showPostedJobs = function(){
                             <button class="delete-posted-job-btn" id="${job.id}">Delete</button>
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
-        // for (let employee of job.applications){
-        //     document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
-        //     <span>${employee}</span>
-        //     <button>Accept</button>
-        //     </li>`
-        // }    
+        for (let employee of job.applications){
+            document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
+            <span>${employee}</span>
+            <button>Accept</button>
+            </li>`
+        }    
     }
 
     for(let job of model.postedJobs){
