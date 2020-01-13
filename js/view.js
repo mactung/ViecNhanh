@@ -119,6 +119,7 @@ view.showComponents = function (name){
             app.innerHTML = components.employer;
             controller.loadEmployees()
             view.displayInforUser()
+            view.postJobHandler()
 
             document.getElementById('menu-btn').innerHTML = `
                 <div id="find-empployee" class="tab">
@@ -140,9 +141,7 @@ view.showComponents = function (name){
 
             let jobsPostedBtn = document.getElementById('posted-jobs')
             jobsPostedBtn.onclick = jobsPostedBtnClickHandler
-            let postBtn = document.getElementById('post-job')
-            postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click");
-             }
+            
             
 
             
@@ -150,8 +149,8 @@ view.showComponents = function (name){
             function findEmployeeBtnClickHandler () {
                 document.getElementById('main-content').innerHTML = components.listEmployee + components.postJob;
                 controller.loadEmployees()
-                let postBtn = document.getElementById('post-job')
-                postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click")}
+                view.postJobHandler()
+                
 
             }
             function profileEmployerBtnClickHandler () {
@@ -164,23 +163,7 @@ view.showComponents = function (name){
 
             
 
-            let formPost = document.getElementById('form-post-job')
-            formPost.onsubmit = submitFormPostHandler
             
-            function submitFormPostHandler(e){
-                let currentUser = firebase.auth().currentUser.email
-                e.preventDefault()
-                dataPost = {
-                    jobTitle: formPost.jobTitle.value,
-                    address: formPost.address.value,
-                    time: formPost.time.value,
-                    jobDescription: formPost.description.value,
-                    salary: formPost.salary.value,
-                    postOwner: currentUser,
-                    applications: []
-                }
-                controller.addJob(dataPost)
-            }
 
             break;
 
@@ -390,11 +373,11 @@ view.showPostedJobs = function(){
                                     <span>Mô tả công việc:</span>
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
-                                <div id="list-empolyee-apply">
-                                        
-                                    </ul>
+                                
+                                <ul id="${job.id}-list-employee-applying">        
+                                </ul>
                                     
-                                </div>
+                                
                             </div>
                             <button class="delete-posted-job-btn" >Delete</button>
                     </div>`
@@ -407,6 +390,27 @@ view.showPostedJobs = function(){
         }
     }
 }
+view.postJobHandler = function(){
+    let postBtn = document.getElementById('post-job')
+    postBtn.onclick = () => { $("#add-job-modal").modal('show'); console.log("click") }
+    let formPost = document.getElementById('form-post-job')
+    formPost.onsubmit = submitFormPostHandler
+
+    function submitFormPostHandler(e) {
+        let currentUser = firebase.auth().currentUser.email
+        e.preventDefault()
+        dataPost = {
+            jobTitle: formPost.jobTitle.value,
+            address: formPost.address.value,
+            time: formPost.time.value,
+            jobDescription: formPost.description.value,
+            salary: formPost.salary.value,
+            postOwner: currentUser,
+            applications: []
+        }
+        controller.addJob(dataPost)
+    }
+}
 view.displayInforUser = function () {
     view.setText('fullName', model.inforCurrentUser.fullName)
     view.setText('gender', model.inforCurrentUser.gender)
@@ -415,6 +419,7 @@ view.displayInforUser = function () {
     view.setText('email', model.inforCurrentUser.email)
     view.setText('city', model.inforCurrentUser.city)
 }
+
 
 view.setText = function (id,message){
     document.getElementById(id).innerHTML = message;
