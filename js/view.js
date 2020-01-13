@@ -259,7 +259,7 @@ view.showListJobs = function(){
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
                             </div>
-                            <button class="apply-job-btn" id="${job.id}">${textButton}</button>
+                            <button class="btn" id="${job.id}">${textButton}</button>
                             
                     </div>`
 // ${(

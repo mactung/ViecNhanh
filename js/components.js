@@ -262,7 +262,7 @@ components.asideLeft = `<div id="aside-left">
                     </div>
                 </div>
 
-                <button onclick="controller.logOut()">Log Out</button>
+                <button class="btn btn-danger" onclick="controller.logOut()">Log Out</button>
                 <div id="control-container">
                     
                 </div>
@@ -313,6 +313,7 @@ components.postJob = `
             </div>
         </div>
     </div>
+    
 `
 
 components.listEmployee = `
@@ -333,7 +334,7 @@ components.listEmployee = `
                             <option value="2">Dọn nhà</option>
                         </select>
                     </div>
-                    <button id="post-job">Post</button>
+                    <button class="btn btn-success btn-lg" id="post-job">Post</button>
                 </div>
                 <div id="employees-list-container">
                     
@@ -352,6 +353,7 @@ components.postedJob = `
 `
 components.employer = `
     <div id="control-bar-main-content-container">
+    
 
             ${components.asideLeft}
             <div id="aside-right">

@@ -101,6 +101,7 @@ controller.addJob = async function(dataPost){
         .collection('postFindEmployee')
         .add(dataPost)
         $("#add-job-modal").modal('hide');
+        $('.alert').alert()
 
     }catch (err){
         setText('post-noti',err)
