@@ -16,33 +16,23 @@ components.nav = `
 
 components.welcomePage = `
 <div class="nav-bar">
-            <div id="header-left">
+            <div class="logo">
                 <span>ViecVat</span>
             </div>
-            <div id="header-right">
-                <a href="#">Đăng kí</a>
-                <a href="#">Đăng nhập</a>
-            </div>
         </div>
-        <div id="content">
-            <div id="option-wrapper">
-                <div id="employer-container">
-                    <div id="employer-title">
-                        <div class="sign-up-btn" id="employer-sign-up-btn">Bạn đang tìm người làm? <br> Tìm ngay !!!</div>
-                    </div> 
-                </div>
-                <div id="job-seeker-container">
-                    <div id="job-seeker-title">
-                        <div class="sign-up-btn" id="job-seeker-sign-up-btn">Bạn đang tìm việc? <br> Đăng kí ngay !!!</div>
-                    </div>
-                    
-                </div>
-
+        <div class="main-register">
+            <div class="register-btn-wrapper" id="employer-container">
+                <div class="register-content">Bạn đang muốn tìm người làm ?</div>
+                <div class="register-btn" id="employer-sign-up-btn">Đăng kí ngay !!!</div>
+                
+            </div>
+            <div class="register-btn-wrapper" id="job-seeker-container">
+                <div class="register-content">Bạn đang muốn tìm việc làm ?</div>
+                <div class="register-btn" id="job-seeker-sign-up-btn"> Đăng kí ngay !!!</div>
             </div>
             
-            <div id="already-have-account">
-                <button id="already-have-account-btn">Already have an account? Sign in</button>
-            </div>   
+            <div id="already-have-account-btn">Already have an account? Sign in</div>
+            
         </div>
         <div id="footer">
             <span>About Us</span>
@@ -237,27 +227,27 @@ components.asideLeft = `<div  id="aside-left">
                     <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
                 </div>
                 <div id="infor-user-basic">
-                    <div class="infor-wrapper">
+                    <div class="infor-inline-wrapper">
                         <span>Họ và tên: </span>
                         <span id="fullName"></span>
                     </div>
-                    <div class="infor-wrapper">
+                    <div class="infor-inline-wrapper">
                         <span>Giới tính: </span>
                         <span id="gender"></span>
                     </div>
-                    <div class="infor-wrapper">
+                    <div class="infor-inline-wrapper">
                         <span>Ngày sinh: </span>
                         <span id="dateOfBirth"></span>
                     </div>
-                    <div class="infor-wrapper">
+                    <div class="infor-inline-wrapper">
                         <span>Số điện thoại: </span>
                         <span id="mobileNumber"></span>
                     </div>
-                    <div class="infor-wrapper">
+                    <div class="infor-inline-wrapper">
                         <span>email: </span>
                         <span id="email"></span>
                     </div>
-                    <div class="infor-wrapper">
+                    <div class="infor-inline-wrapper">
                         <span>Thành Phố: </span>
                         <span id="city"></span>
                     </div>
@@ -369,9 +359,9 @@ components.employer = `
     
     
 
+            <div id="menu-btn"></div>
             ${components.asideLeft}
             <div  id="aside-right">
-                <div id="menu-btn"></div>
                 <div id="main-content">
                 ${components.listEmployee}
                 ${components.postJob}
@@ -483,9 +473,9 @@ components.jobOffers=`
 components.jobSeeker = `
     
 
+            <div id="menu-btn"></div>
             ${components.asideLeft}
             <div  id="aside-right">
-                <div id="menu-btn"></div>
                 <div id="main-content">
                 ${components.listJobs}
 

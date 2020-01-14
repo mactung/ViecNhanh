@@ -119,7 +119,7 @@ view.showComponents = function (name){
             break;
         }
         case 'employer':{
-            
+            let previousTab = 0;
             let app = document.getElementById('app');
             app.innerHTML = components.employer;
             controller.loadEmployees()
@@ -141,6 +141,7 @@ view.showComponents = function (name){
 
             let findEmployeeBtn = document.getElementById('find-empployee')
             findEmployeeBtn.onclick = findEmployeeBtnClickHandler
+            document.getElementsByClassName('tab')[0].classList.add('active')
 
             let profileEmployerBtn = document.getElementById('personal-profile')
             profileEmployerBtn.onclick = profileEmployerBtnClickHandler
@@ -153,6 +154,9 @@ view.showComponents = function (name){
             
 
             function findEmployeeBtnClickHandler () {
+                document.getElementsByClassName('tab')[previousTab].classList.remove('active')
+                document.getElementsByClassName('tab')[0].classList.add('active')
+                previousTab = 0
                 document.getElementById('main-content').innerHTML = components.listEmployee + components.postJob;
                 controller.loadEmployees()
                 view.postJobHandler()
@@ -160,9 +164,15 @@ view.showComponents = function (name){
 
             }
             function profileEmployerBtnClickHandler () {
+                document.getElementsByClassName('tab')[previousTab].classList.remove('active')
+                document.getElementsByClassName('tab')[1].classList.add('active')
+                previousTab = 1
                 document.getElementById('main-content').innerHTML = components.employerProfile;
             }
             function jobsPostedBtnClickHandler () {
+                document.getElementsByClassName('tab')[previousTab].classList.remove('active')
+                document.getElementsByClassName('tab')[2].classList.add('active')
+                previousTab = 2
                 document.getElementById('main-content').innerHTML = components.postedJob;
                 view.showPostedJobs()
 

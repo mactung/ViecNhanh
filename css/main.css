@@ -9,6 +9,7 @@ body{
     margin: 0px;
     height:100vh;
     width: 100%;
+    background-color: #f6f6f2;
 }
 a{
     margin-right: 20px;
@@ -39,21 +40,10 @@ select{
 .nav-bar{
     height: 60px;
     width: 100%;
-    background: #E5E5E5;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: white;
+    background-color: #388087;
 }
 
 
-
-
-.main{
-    width: 85%;
-    text-align: center;
-    margin: auto;
-}
 .location-select{
     margin-top: 35px;
 }
@@ -177,68 +167,31 @@ select{
 
 /* welcome page */
 
-#header{
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    background: #1F2C52;
-    color: white;
-}
 
-#header-left{
-    padding: 10px;
-    align-self: center;
-}
-
-#header-left>*{
-    font-family: 'Cairo', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-}
-
-#header-right{
-    align-self: center;
-    display: flex;
-    justify-content: flex-end;
-}
-
-
-
-#content{
-    /* background: url('../DesManHinh/jobsss.jpg'); */
-    background-size: cover;
+.main-register {
     height: calc(100vh - 100px);
-}
-
-#option-wrapper{
-    height: 100%;
-    width: 100%;
     display: flex;
-    flex-flow: wrap row;
     justify-content: space-evenly;
-    
-}
-.sign-up-btn {
-    height: 300px;
-    flex-basis: 500px;
-    border-radius: 10px;
-    font-size: 36px;
-    opacity: 20%;
-    border: 1px solid #e5e5e5e5;
-    cursor: pointer;
-    margin-top: 100px;
-    
-
-}
-#job-seeker-sign-up-btn{
-    background: #39E755;
+    align-items: center;
+    flex-flow: wrap row;
 }
 
-#employer-sign-up-btn{
-    background: #2C40F2;
+.register-btn-wrapper{
+    width : 380px;
+    height: 200px;
+    border: 1px solid #c2edce;
+    text-align: center;
+    background-color: #FFFFF9;
 }
-
+.register-content{
+    line-height: 120px;
+    width : 100%;
+}
+.register-btn{
+    width: 100%;
+    line-height: 80px;
+    background-color: #6fb3b8;
+}
 #already-have-account-btn{
     position: absolute;
     align-self: center;
@@ -301,16 +254,19 @@ select{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: #F6EAEA;
-    border-right: solid black 1px;
+    background: #f6f6f2;
+    border-right: #E5E5E5;
 }
 
 #avatar-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
-    border-bottom: solid black 1px;
+    height: 200px;
+    border-bottom: solid #0F2557 1px;
+}
+.infor-inline-wrapper{
+    
 }
 
 #avatar{
@@ -319,6 +275,8 @@ select{
 }
 #infor-user-basic>*{
     margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #1181B2;
 }
 
 
@@ -332,31 +290,37 @@ select{
 #menu-btn {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     align-items: center;
+    background-color: #388087;
+    width: 100%;
+    /* box-shadow: #1181B2 0px 10px 0 0; */
 
 }
 .tab {
     width: 80%;
     height: 60px;
-    background-color: red;
+    background-color: #388087;
     cursor: pointer;   
     text-align: center;
     color: white;
-    width: 200px;
+    flex-basis: 300px;
 
 }
 
-.tab:hover {
+/* .tab:hover {
     background-color: red;
     opacity: 0.5;
-}
+} */
 
 .tab >*{
    line-height: 60px;
    
 }
 .tab.active {
-    box-shadow: #E5E5E5 ;
+    background-color: #f6f6f2 ;
+    /* border-radius: 10px 10px 0 0; */
+    color:#388087;
 }
 #main-content{
     width: 100%;
@@ -401,7 +365,7 @@ select{
 }
 
 .list-container{
-    background: #F6EAEA;
+    /* background: #5CA2CC; */
     height: 70vh;
     width: 80%;
     border-radius: 10px;
@@ -417,7 +381,6 @@ select{
     height: auto;
     width: 900px;
     background: #ffffff;
-    border-radius: 5px;
     margin-top: 30px;
     margin-bottom: 30px;
     margin-left: auto;
