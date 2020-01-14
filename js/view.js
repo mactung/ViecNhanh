@@ -223,7 +223,7 @@ view.showComponents = function (name){
                 document.getElementById('main-content').innerHTML = components.jobOffers
                 // controller.loadJobOffers()
                 view.showJobOffers()
-
+                view.showPendingJobs()
             }
 
             break;
@@ -233,6 +233,49 @@ view.showComponents = function (name){
     
         default:
             break;
+    }
+}
+
+
+view.showPendingJobs = function(){
+    for(let job of model.listPendingJobs){
+        let html = `
+    <div class="job-offers-detail-container" id="${job.id}-container">
+        <div class="job-offers-detail-container-2">
+            <div class="job-offers-detail-left">
+                <a href="#">${job.postOwner}</a>
+            </div>
+            
+            <div class="job-offers-detail-center">
+                <div class="job-detail-wrapper">
+                    <span>Loại CV:</span>
+                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Địa chỉ:</span>
+                    <div class="job-detail" id="address">${job.address}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Lương</span>
+                    <div class="job-detail" id="salary">${job.salary}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Thời gian:</span>
+                    <div class="job-detail" id="time">${job.time}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Mô tả công việc:</span>
+                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                </div>
+                    
+                
+            </div>
+                <div id="${job.id}-pending">Pending</div>
+
+        </div>    
+    </div>`
+
+    document.getElementById('job-offers-container').innerHTML += html
     }
 }
 
@@ -269,27 +312,29 @@ view.showJobOffers = function(){
                     
                 
             </div>
-            <button class="btn btn-success" id="${job.id}-accept">Accept</button>
-            <button class="btn btn-danger" id="${job.id}-decline">Decline</button>
-            <div id="${job.id}-pending"></div>
-
+                <button class="btn btn-success" id="${job.id}-accept" onclick="controller.acceptOffer('${job.id}')">Accept</button>
+                <button class="btn btn-danger" id="${job.id}-decline" onclick="controller.declineOffer('${job.id}')">Decline</button>
+                <div id="${job.id}-pending"></div>
         </div>    
     </div>`
 
     document.getElementById('job-offers-container').innerHTML += html
     }
-    for(let job of model.listJobOffers){
-        document.getElementById(`${job.id}-accept`).onclick = acceptOfferClickHandler;
-        document.getElementById(`${job.id}-decline`).onclick = declineOfferClickHandler;
+    // for(let job of model.listJobOffers){
+    //     document.getElementById(`${job.id}-accept`).onclick = acceptOfferClickHandler;
+    //     document.getElementById(`${job.id}-decline`).onclick = declineOfferClickHandler;
 
-        function acceptOfferClickHandler(){
-            controller.acceptOffer(job.id)
-        }
+    //     function acceptOfferClickHandler(){
+    //         console.log('clicked');
+    //         controller.acceptOffer(job.id)
+            
+    //     }
 
-        function declineOfferClickHandler(){
-            controller.declineOffer(job.id)
-        }
-    }
+    //     function declineOfferClickHandler(){
+    //         console.log('clicked');
+    //         controller.declineOffer(job.id)
+    //     }
+    // }
 }
 
 view.showListJobs = function(){
