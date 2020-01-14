@@ -179,16 +179,12 @@ components.jobSeekerRegister = `
                         </div>
                     </div>
                     <div class="input-wrapper">
-                        <span>Chọn 3 ngành nghề chính</span>
+                        <span>Ngành nghề chính</span>
                         <div class="job-wrapper">
                             <select name="job1" id="job-1">
-                                <option value="1">bốc vác</option>
-                            </select>
-                            <select name="job2" id="job-2">
-                                <option value="1">bốc vác</option>
-                            </select>
-                            <select name="job3" id="job-3">
-                                <option value="1">bốc vác</option>
+                                <option value="Lao công">Lao công</option>
+                                <option value="Phụ hồ">Phụ hồ</option>
+                                <option value="Tiếp thị">Tiếp thị</option>
                             </select>
                         </div>                        
                     </div>

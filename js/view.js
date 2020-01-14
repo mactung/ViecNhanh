@@ -52,7 +52,10 @@ view.showComponents = function (name){
                     city : formRegister.city.value,
                     district : formRegister.district.value,
                     jobs: [formRegister.job1.value, formRegister.job2.value, formRegister.job3.value],
-                    permissionUser: 'jobSeeker',
+                    createdAt: new Date().toISOString(),
+                    jobOffers: [],
+                    jobsPending: [],
+                    permissionUser: 'employee',
                     
                 }
                 console.log(dataUser);
@@ -84,6 +87,7 @@ view.showComponents = function (name){
                     city : formRegister.city.value,
                     district : formRegister.district.value,
                     permissionUser: 'employer',
+                    createdAt: new Date().toISOString(),
                 }
                 let validateResults = [
                     view.validate(dataUser.email.includes('@'), 'email-error','Đây không phải email' ),
@@ -588,7 +592,8 @@ view.postJobHandler = function(){
             jobDescription: formPost.description.value,
             salary: formPost.salary.value,
             postOwner: currentUser,
-            applications: []
+            applications: [],
+            offersAccepted: []
         }
         controller.addJob(dataPost)
     }
