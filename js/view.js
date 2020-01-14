@@ -55,6 +55,7 @@ view.showComponents = function (name){
                     createdAt: new Date().toISOString(),
                     jobOffers: [],
                     jobsPending: [],
+                    jobsDone: [],
                     permissionUser: 'employee',
                     
                 }
@@ -229,6 +230,7 @@ view.showComponents = function (name){
                 // controller.loadJobOffers()
                 view.showJobOffers()
                 view.showPendingJobs()
+                view.showJobsDone()
             }
 
             break;
@@ -241,6 +243,47 @@ view.showComponents = function (name){
     }
 }
 
+view.showJobsDone = function(){
+    for(let job of model.listJobsDone){
+        let html = `
+    <div class="job-offers-detail-container" id="${job.id}-container">
+        <div class="job-offers-detail-container-2">
+            <div class="job-offers-detail-left">
+                <a href="#">${job.postOwner}</a>
+            </div>
+            
+            <div class="job-offers-detail-center">
+                <div class="job-detail-wrapper">
+                    <span>Loại CV:</span>
+                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Địa chỉ:</span>
+                    <div class="job-detail" id="address">${job.address}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Lương</span>
+                    <div class="job-detail" id="salary">${job.salary}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Thời gian:</span>
+                    <div class="job-detail" id="time">${job.time}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Mô tả công việc:</span>
+                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                </div>
+                    
+                
+            </div>
+                <div id="${job.id}-pending">Done</div>
+                <button class="btn btn-danger">Delete</button>
+        </div>    
+    </div>`
+
+    document.getElementById('job-offers-container').innerHTML += html
+    }
+}
 
 view.showPendingJobs = function(){
     for(let job of model.listPendingJobs){
@@ -563,7 +606,7 @@ view.showPostedJobs = function(){
                             <div id="job-status"></div>
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
-        
+
         for (let employee of job.applications){
             document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
             <span>${employee}</span>

@@ -120,6 +120,7 @@ controller.submitJobOffer = async function(userId,postId){
 controller.loadJobOffers = async function(){
     let jobsList = []
     let jobsPendingList = []
+    let jobsDone = []
     for(let offer of model.inforCurrentUser.jobOffers){
         let data = await firebase
             .firestore()
@@ -138,8 +139,18 @@ controller.loadJobOffers = async function(){
         job = transformDoc(data)
         jobsPendingList.push(job)
     } 
+    for(let offer of model.inforCurrentUser.jobsDone){
+        let data = await firebase
+            .firestore()
+            .collection('postFindEmployee')
+            .doc(offer)
+            .get()
+        job = transformDoc(data)
+        jobsDone.push(job)
+    } 
     model.saveListJobOffers(jobsList);
     model.saveListPendingJobs(jobsPendingList)
+    model.saveListJobsDone(jobsDone)
     console.log('loaded offers');
     
 }
@@ -274,7 +285,43 @@ controller.jobDone = async function(postId){
         .update({
             status : 'done'
         })
-}
+    let getEmployee = await firebase
+            .firestore()
+            .collection('postFindEmployee')
+            .doc(postId)
+            .get()
+    let listEmployees = transformDoc(getEmployee)
+    console.log(listEmployees);
+    
+    for(let employeeID of listEmployees.offersAccepted){
+        await firebase
+            .firestore()
+            .collection('users')
+            .doc(employeeID)
+            .update({
+                jobsPending: firebase.firestore.FieldValue.arrayRemove(postId),
+                jobsDone : firebase.firestore.FieldValue.arrayUnion(postId),
+            })
+    }
+
+    let employeeNotAcceptYet = await firebase
+        .firestore()
+        .collection('users')
+        .where('jobOffers', 'array-contains', postId)
+        .get()
+    let docs = employeeNotAcceptYet.docs
+    let listEmployees2 = transformDocs(docs)
+    for(let employee of listEmployees2){
+        await firebase
+            .firestore()
+            .collection('users')
+            .doc(employee.id)
+            .update({
+                jobOffers: firebase.firestore.FieldValue.arrayRemove(postId),
+            })
+    }
+    
+}   
 
 function transformDocs(docs) {
     let datas = []

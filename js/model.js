@@ -6,6 +6,7 @@ model = {
     listEmployees : null,
     listJobOffers : null,
     listPendingJobs: null,
+    listJobsDone: null,
 };
 
 model.saveInforCurrentUser = function (inforUser){
@@ -35,8 +36,10 @@ model.saveAppliedJobs = function (jobsList){
     model.appliedJobs = jobsList
 }
 
-model.saveListPendingJobs = function (jobList){
-    model.listPendingJobs = jobList
+model.saveListPendingJobs = function (jobsList){
+    model.listPendingJobs = jobsList
 }
 
-
+model.saveListJobsDone = function (jobsList){
+    model.listJobsDone = jobsList
+}
