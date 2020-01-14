@@ -75,7 +75,6 @@ controller.loadListJobs = async function () {
 
     model.saveListJobs(listJobs)
     view.showListJobs()
-
 }
 
 controller.loadEmployees = async function () {
@@ -201,49 +200,7 @@ controller.showJobApplications = async function(){
         .get()
     let docs = appliedJobsList.docs
     let jobsList = transformDocs(docs)
-    for(let job of jobsList){
-        let html = `
-        <div class="list-container" id="${job.id}-container">
-                        <div class="applied-job-detail-container-2">
-                            <div class="applied-job-detail-left">
-                                <a href="#">${job.postOwner}</a>
-                            </div>
-                            
-                            <div class="applied-job-detail-center">
-                                <div class="job-detail-wrapper">
-                                    <span>Loại CV:</span>
-                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Địa chỉ:</span>
-                                    <div class="job-detail" id="address">${job.address}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Lương</span>
-                                    <div class="job-detail" id="salary">${job.salary}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Thời gian:</span>
-                                    <div class="job-detail" id="time">${job.time}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Mô tả công việc:</span>
-                                    <div class="job-detail" id="time">${job.jobDescription}</div>
-                                </div>
-                            </div>
-                            <button class="btn btn-danger" id="${job.id}")">Cancel</button>
-                    </div>`
-        
-        document.getElementById('applied-jobs-list-container').innerHTML += html
-    }
-    for (let job of jobsList){
-        document.getElementById(job.id).onclick = jobApplicationCancelClickHandle
-        function jobApplicationCancelClickHandle(){
-            console.log(job.id);           
-            controller.cancelJobApplying(job.id, model.inforCurrentUser.email)
-            document.getElementById(`${job.id}-container`).outerHTML = ''
-        }      
-    }
+    model.saveAppliedJobs(jobsList)
 }
 
 
@@ -307,6 +264,16 @@ controller.deletePostedJob = async function(postId){
             })
     }
     
+}
+
+controller.jobDone = async function(postId){
+    await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .doc(postId)
+        .update({
+            status : 'done'
+        })
 }
 
 function transformDocs(docs) {

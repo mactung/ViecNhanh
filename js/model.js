@@ -31,6 +31,10 @@ model.saveListJobOffers = function (jobOffers){
     console.log(model.listJobOffers);  
 }
 
+model.saveAppliedJobs = function (jobsList){
+    model.appliedJobs = jobsList
+}
+
 model.saveListPendingJobs = function (jobList){
     model.listPendingJobs = jobList
 }

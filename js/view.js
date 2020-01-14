@@ -180,6 +180,7 @@ view.showComponents = function (name){
             app.innerHTML = components.jobSeeker;
             controller.loadListJobs()
             controller.loadJobOffers()
+            controller.showJobApplications()
             view.displayInforUser()
 
             document.getElementById('menu-btn').innerHTML = `
@@ -213,7 +214,7 @@ view.showComponents = function (name){
     
             function findJobBtnClickHandler() {
                 document.getElementById('main-content').innerHTML = components.listJobs;
-                controller.loadListJobs()
+                view.showListJobs()
             }
             function profileEmployeeBtnClickHandler() {
                 document.getElementById('main-content').innerHTML = components.employeeProfile;
@@ -221,7 +222,7 @@ view.showComponents = function (name){
             }
             function applicationJobsBtnClickHandler() {
                 document.getElementById('main-content').innerHTML = components.application;
-                controller.showJobApplications()
+                view.showAppliedJobs()
             }
             function jobOfferBtnClickHandler(){
                 document.getElementById('main-content').innerHTML = components.jobOffers
@@ -403,6 +404,53 @@ view.showListJobs = function(){
     }
     
 }
+
+view.showAppliedJobs = function(){
+    for(let job of model.appliedJobs){
+        let html = `
+        <div class="list-container" id="${job.id}-container">
+                        <div class="applied-job-detail-container-2">
+                            <div class="applied-job-detail-left">
+                                <a href="#">${job.postOwner}</a>
+                            </div>
+                            
+                            <div class="applied-job-detail-center">
+                                <div class="job-detail-wrapper">
+                                    <span>Loại CV:</span>
+                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Địa chỉ:</span>
+                                    <div class="job-detail" id="address">${job.address}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Lương</span>
+                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Thời gian:</span>
+                                    <div class="job-detail" id="time">${job.time}</div>
+                                </div>
+                                <div class="job-detail-wrapper">
+                                    <span>Mô tả công việc:</span>
+                                    <div class="job-detail" id="time">${job.jobDescription}</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-danger" id="${job.id}")">Cancel</button>
+                    </div>`
+        
+        document.getElementById('applied-jobs-list-container').innerHTML += html
+    }
+    for (let job of model.appliedJobs){
+        document.getElementById(job.id).onclick = jobApplicationCancelClickHandle
+        function jobApplicationCancelClickHandle(){
+            console.log(job.id);           
+            controller.cancelJobApplying(job.id, model.inforCurrentUser.email)
+            document.getElementById(`${job.id}-container`).outerHTML = ''
+        }      
+    }
+}
+
 view.showListEmployees = function () {
     
     for (let employee of model.listEmployees) {
@@ -512,9 +560,10 @@ view.showPostedJobs = function(){
                             </div>
                             <button class="btn btn-danger" id="${job.id}-delete">Delete</button>
                             <button class="btn btn-success" id="${job.id}-done">Done</button>
-
+                            <div id="job-status"></div>
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
+        
         for (let employee of job.applications){
             document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
             <span>${employee}</span>
@@ -525,10 +574,19 @@ view.showPostedJobs = function(){
 
     for(let job of model.postedJobs){
         document.getElementById(`${job.id}-delete`).onclick = jobDeleteClickHandler
+        document.getElementById(`${job.id}-done`).onclick = jobDoneClickHandler
+
         function jobDeleteClickHandler(){            
             controller.deletePostedJob(job.id)
             document.getElementById(`${job.id}-container`).outerHTML = ''
         }   
+
+        function jobDoneClickHandler(){
+            controller.jobDone(job.id)
+            document.getElementById(`${job.id}-done`).outerHTML = ''
+            document.getElementById(`${job.id}-delete`).outerHTML = ''
+            document.getElementById('job-status').innerHTML = 'Done'
+        }
     }
 }
 
@@ -593,7 +651,8 @@ view.postJobHandler = function(){
             salary: formPost.salary.value,
             postOwner: currentUser,
             applications: [],
-            offersAccepted: []
+            offersAccepted: [],
+            status : 'undone'
         }
         controller.addJob(dataPost)
     }
