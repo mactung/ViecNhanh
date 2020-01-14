@@ -205,33 +205,38 @@ components.jobSeekerRegister = `
             `
 
 components.logIn = `
-<section class="login-container">
-            <form id="log-in-form" class="form-login">
-                <div class="form-header">
-                    <h3>Log in</h3>
-                </div>
-                <div class="form-content">
-            
-                    <div class="input-wrapper">
-                        <input type="email" name="email" placeholder="Email">
-                        <div id="email-error" class="message-error"></div>
-                    </div>
-                    <div class="input-wrapper">
-                        <input type="password" name="password" placeholder="Password">
-                        <div id="password-error" class="message-error"></div>
-                    </div>
-                    <div id="login-error" class="message-error"></div>
-            
-                </div>
-                <div class="form-footer">
-                    <a id="login-link" href="#">Haven't got an account yet? Sign up</a>
-                    <button id="login-submit-btn" type="submit">Login</button>
-                </div>
+<div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5>
+            <form id="log-in-form" class="form-signin">
+              <div class="form-label-group">
+                <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputEmail">Email address</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember password</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
             </form>
-            </section>
+          </div>
+        </div>
+      </div>
+    </div>
 `
 
-components.asideLeft = `<div id="aside-left">
+components.asideLeft = `<div  id="aside-left">
                 <div id="avatar-container">
                     <img src="../ViecNhanh/DesManHinh/ava.png" alt="" id="avatar">
                 </div>
@@ -369,7 +374,7 @@ components.employer = `
     
 
             ${components.asideLeft}
-            <div id="aside-right">
+            <div  id="aside-right">
                 <div id="menu-btn"></div>
                 <div id="main-content">
                 ${components.listEmployee}
@@ -483,7 +488,7 @@ components.jobSeeker = `
     <div id="control-bar-main-content-container">
 
             ${components.asideLeft}
-            <div id="aside-right">
+            <div  id="aside-right">
                 <div id="menu-btn"></div>
                 <div id="main-content">
                 ${components.listJobs}

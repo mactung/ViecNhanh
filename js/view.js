@@ -239,7 +239,7 @@ view.showListJobs = function(){
         let btnClass = 'btn-primary'
         if(job.applications.includes(firebase.auth().currentUser.email)){
             textButton = 'Cancel'
-            btnClass = 'btn-danger'
+            btnClass = 'btn-info'
         }
         let html = `
         <div class="job-detail-container" >

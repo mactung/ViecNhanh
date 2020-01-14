@@ -348,6 +348,8 @@ select{
     cursor: pointer;   
     text-align: center;
     color: white;
+    width: 300px;
+
 }
 
 .tab:hover {
@@ -357,6 +359,7 @@ select{
 
 .tab >*{
    line-height: 60px;
+   
     
 }
 .tab.active {
@@ -369,6 +372,8 @@ select{
 }
 #menu-btn {
     display: flex;
+    flex-wrap: wrap;
+    flex-basis: auto;
 
 }
 
