@@ -242,41 +242,35 @@ view.showListJobs = function(){
             btnClass = 'btn-info'
         }
         let html = `
-        <div class="job-detail-container" >
-                        <div class="job-detail-container-2">
-                            <div class="job-detail-left">
-                                <a href="#">${job.postOwner}</a>
+        <div class="detail-wrapper" >
+                        
+                            
+                            <a href="#">${job.postOwner}</a>
+                            <div class="detail-inline-wrapper">
+                                <span>Loại CV:</span>
+                                <span  id="jobTitle">${job.jobTitle}</span>
+                            </div>
+                            <div class="detail-inline-wrapper">
+                                <span>Địa chỉ:</span>
+                                <span  id="address">${job.address}</span>
+                            </div>
+                            <div class="detail-inline-wrapper">
+                                <span>Lương</span>
+                                <div  id="salary">${job.salary}</div>
+                            </div>
+                            <div class="detail-inline-wrapper">
+                                <span>Thời gian:</span>
+                                <span id="time">${job.time}</span>
+                            </div>
+                            <div class="detail-inline-wrapper">
+                                <span>Mo ta cong viec:</span>
+                                <span id="jobDescription">${job.jobDescription}</span>
                             </div>
                             
-                            <div class="job-detail-center">
-                                <div class="job-detail-wrapper">
-                                    <span>Loại CV:</span>
-                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Địa chỉ:</span>
-                                    <div class="job-detail" id="address">${job.address}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Lương</span>
-                                    <div class="job-detail" id="salary">${job.salary}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Thời gian:</span>
-                                    <div class="job-detail" id="time">${job.time}</div>
-                                </div>
-                                <div class="job-detail-wrapper">
-                                    <span>Mo ta cong viec:</span>
-                                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
-                                </div>
-                            </div>
                             <button class="btn ${btnClass}" id="${job.id}">${textButton}</button>
                             
                     </div>`
-// ${(
-//                                 model.inforCurrentUser.jobApply && 
-//                                 model.inforCurrentUser.jobApply !== job.id) ? 
-//                                     'disabled="true"' : ""} 
+
                     
         document.getElementById('jobs-list-container').innerHTML += html
         
@@ -305,8 +299,7 @@ view.showListEmployees = function () {
     
     for (let employee of model.listEmployees) {
         let html = `
-                    <div class="employees-detail-container">
-                        <div class="employees-detail-container-2">
+                    <div class="detail-wrapper">
                             <div class="employees-detail-left">
                                 <div class="personal-info-wrapper">
                                     <span>Họ và tên:</span>
@@ -342,7 +335,7 @@ view.showListEmployees = function () {
                                     <span>Rate</span>
                                     <div class="personal-info-detail" id="date">${employee.rate}</div>
                                 </div>
-                            </div>
+                            
                             <button class="btn btn-info" id="${employee.id}">Choose</button>
                     </div>`
         document.getElementById('employees-list-container').innerHTML += html
@@ -386,23 +379,23 @@ view.showPostedJobs = function(){
                             </div>
                             
                             <div class="posted-job-detail-center">
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Loại CV:</span>
                                     <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Địa chỉ:</span>
                                     <div class="job-detail" id="address">${job.address}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Lương</span>
                                     <div class="job-detail" id="salary">${job.salary}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Thời gian:</span>
                                     <div class="job-detail" id="time">${job.time}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Mô tả công việc:</span>
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>
@@ -443,23 +436,23 @@ view.showJobChoose = function(){
                             </div>
                             
                             <div class="posted-job-detail-center">
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Loại CV:</span>
                                     <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Địa chỉ:</span>
                                     <div class="job-detail" id="address">${job.address}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Lương</span>
                                     <div class="job-detail" id="salary">${job.salary}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Thời gian:</span>
                                     <div class="job-detail" id="time">${job.time}</div>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Mô tả công việc:</span>
                                     <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
                                 </div>

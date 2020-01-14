@@ -354,7 +354,7 @@ components.listEmployee = `
                     </div>
                     <button class="btn btn-success btn-lg" id="post-job">Post</button>
                 </div>
-                <div id="employees-list-container">
+                <div id="employees-list-container" class="list-container">
                     
                 </div>
                 </div>
@@ -364,13 +364,13 @@ components.postedJob = `
                 <div id="posted-jobs-header">
                     Posted Jobs:
                 </div>
-                <div id="posted-jobs-list-container">
+                <div id="posted-jobs-list-container" class="list-container">
                     
                 </div>
             </div>
 `
 components.employer = `
-    <div id="control-bar-main-content-container">
+    
     
 
             ${components.asideLeft}
@@ -383,31 +383,31 @@ components.employer = `
                 </div>
             </div>
 
-        </div>  
+    
 `
 
 
 
 components.listJobs = `
-<div id="search-bar-filter-container">
-                    <input type="text" name="search-bar" id="search-bar" placeholder="Search">
-                    <div id="filter-container">
-                        <span>Lọc</span>
-                        <select name="filter" id="filter">
-                            <option value="distance">Khoảng cách</option>
-                            <option value="salary">Mức lương</option>
-                        </select>
+                    <div id="search-bar-filter-container">
+                        <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+                        <div id="filter-container">
+                            <span>Lọc</span>
+                            <select name="filter" id="filter">
+                                <option value="distance">Khoảng cách</option>
+                                <option value="salary">Mức lương</option>
+                            </select>
+                        </div>
+
+                        <div id="tags-container">
+                            <span>Tags</span>
+                            <select name="jobs-tags" id="jobs-tags">
+                                <option value="1">Bốc vác</option>
+                                <option value="2">Dọn nhà</option>
+                            </select>
+                        </div>
                     </div>
-                    
-                    <div id="tags-container">
-                        <span>Tags</span>
-                        <select name="jobs-tags" id="jobs-tags">
-                            <option value="1">Bốc vác</option>
-                            <option value="2">Dọn nhà</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="jobs-list-container">
+                <div id="jobs-list-container" class="list-container">
                     
                 </div>
 
@@ -467,7 +467,7 @@ components.application = `
 <div id="applied-jobs-header">
                     Applied Jobs:
                 </div>
-                <div id="applied-jobs-list-container">
+                <div id="applied-jobs-list-container" class="list-container">
                     
                     
                 </div>
@@ -478,14 +478,14 @@ components.jobOffers=`
                     Job offers: 
                 </div>
                 
-                <div id="job-offers-container">
+                <div id="job-offers-container" class="list-container">
                     
                </div>
             
         </div>  
 `
 components.jobSeeker = `
-    <div id="control-bar-main-content-container">
+    
 
             ${components.asideLeft}
             <div  id="aside-right">
@@ -496,6 +496,6 @@ components.jobSeeker = `
                 </div>
             </div>
         
-        </div>  `
+          `
 
 

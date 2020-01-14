@@ -198,7 +198,7 @@ controller.showJobApplications = async function(){
     let jobsList = transformDocs(docs)
     for(let job of jobsList){
         let html = `
-        <div class="applied-job-detail-container" id="${job.id}-container">
+        <div class="list-container" id="${job.id}-container">
                         <div class="applied-job-detail-container-2">
                             <div class="applied-job-detail-left">
                                 <a href="#">${job.postOwner}</a>
