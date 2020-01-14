@@ -1,5 +1,6 @@
 const view = {
     currentComponent : null,
+    currentTab: null,
 };
 
 view.showComponents = function (name){
@@ -119,13 +120,18 @@ view.showComponents = function (name){
             break;
         }
         case 'employer':{
+            view.currentTab = 'findEmployee'
             let previousTab = 0;
             let app = document.getElementById('app');
             app.innerHTML = components.employer;
             controller.loadEmployees()
+            controller.loadPostedJobs()
             view.displayInforUser()
             view.postJobHandler()
-            controller.loadPostedJobs()
+            
+            controller.setupDatabaseChangeJobOffers()
+            controller.setupDatabaseChangeJobApply()
+
 
             document.getElementById('menu-btn').innerHTML = `
                 <div id="find-empployee" class="tab">
@@ -154,6 +160,7 @@ view.showComponents = function (name){
             
 
             function findEmployeeBtnClickHandler () {
+                view.currentTab = 'findEmployee'
                 document.getElementsByClassName('tab')[previousTab].classList.remove('active')
                 document.getElementsByClassName('tab')[0].classList.add('active')
                 previousTab = 0
@@ -164,12 +171,14 @@ view.showComponents = function (name){
 
             }
             function profileEmployerBtnClickHandler () {
+                view.currentTab = 'employerProfile'
                 document.getElementsByClassName('tab')[previousTab].classList.remove('active')
                 document.getElementsByClassName('tab')[1].classList.add('active')
                 previousTab = 1
                 document.getElementById('main-content').innerHTML = components.employerProfile;
             }
             function jobsPostedBtnClickHandler () {
+                view.currentTab = 'postedJobs'
                 document.getElementsByClassName('tab')[previousTab].classList.remove('active')
                 document.getElementsByClassName('tab')[2].classList.add('active')
                 previousTab = 2
@@ -186,13 +195,16 @@ view.showComponents = function (name){
 
         }
         case 'employee':{
-            
+            view.currentTab ='findJob'
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
             controller.loadListJobs()
             controller.loadJobOffers()
-            controller.showJobApplications()
+            controller.loadJobApplications()
             view.displayInforUser()
+            controller.setupDatabaseChangeJobOffers()
+            controller.setupDatabaseChangeJobApply()
+
 
             document.getElementById('menu-btn').innerHTML = `
                 <div id="find-job" class="tab">
@@ -224,18 +236,22 @@ view.showComponents = function (name){
             
     
             function findJobBtnClickHandler() {
+                view.currentTab ='findJob'
                 document.getElementById('main-content').innerHTML = components.listJobs;
                 view.showListJobs()
             }
             function profileEmployeeBtnClickHandler() {
+                view.currentTab ='employeeProfile'
                 document.getElementById('main-content').innerHTML = components.employeeProfile;
                 
             }
             function applicationJobsBtnClickHandler() {
+                view.currentTab ='jobApply'
                 document.getElementById('main-content').innerHTML = components.application;
                 view.showAppliedJobs()
             }
             function jobOfferBtnClickHandler(){
+                view.currentTab ='jobOffers'
                 document.getElementById('main-content').innerHTML = components.jobOffers
                 // controller.loadJobOffers()
                 view.showJobOffers()
@@ -611,9 +627,10 @@ view.showPostedJobs = function(){
                                     
                                 
                             </div>
-                            <button class="btn btn-danger" id="${job.id}-delete">Delete</button>
-                            <button class="btn btn-success" id="${job.id}-done">Done</button>
-                            <div id="job-status"></div>
+                            <div id="${job.id}-button-options">
+                            
+                            </div>
+                            <div id="${job.id}-job-status"></div>
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
 
@@ -624,22 +641,35 @@ view.showPostedJobs = function(){
             </li>`
         }    
     }
-
     for(let job of model.postedJobs){
-        document.getElementById(`${job.id}-delete`).onclick = jobDeleteClickHandler
-        document.getElementById(`${job.id}-done`).onclick = jobDoneClickHandler
-
-        function jobDeleteClickHandler(){            
-            controller.deletePostedJob(job.id)
-            document.getElementById(`${job.id}-container`).outerHTML = ''
-        }   
-
-        function jobDoneClickHandler(){
-            controller.jobDone(job.id)
-            document.getElementById(`${job.id}-done`).outerHTML = ''
-            document.getElementById(`${job.id}-delete`).outerHTML = ''
-            document.getElementById('job-status').innerHTML = 'Done'
+        if(job.status == 'undone'){
+            let html = `
+            <button class="btn btn-danger" id="${job.id}-delete">Delete</button>
+            <button class="btn btn-success" id="${job.id}-done">Done</button>`
+            document.getElementById(`${job.id}-button-options`).innerHTML += html
+        } else {
+            document.getElementById(`${job.id}-job-status`).innerHTML = 'done'
         }
+        
+    }
+    for(let job of model.postedJobs){
+        if(job.status === 'undone'){
+            document.getElementById(`${job.id}-delete`).onclick = jobDeleteClickHandler
+            document.getElementById(`${job.id}-done`).onclick = jobDoneClickHandler
+
+            function jobDeleteClickHandler(){            
+                controller.deletePostedJob(job.id)
+                document.getElementById(`${job.id}-container`).outerHTML = ''
+            }   
+
+            function jobDoneClickHandler(){
+                controller.jobDone(job.id)
+                document.getElementById(`${job.id}-done`).outerHTML = ''
+                document.getElementById(`${job.id}-delete`).outerHTML = ''
+                document.getElementById(`${job.id}-job-status`).innerHTML = 'Done'
+            }
+        }
+        
     }
 }
 

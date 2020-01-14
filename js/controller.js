@@ -60,8 +60,10 @@ controller.loadInforUser = async function() {
     
     let docs = result.docs
     let user = transformDocs(docs)
+    console.log(user);
+    
     model.saveInforCurrentUser(...user)
-
+    // model.saveInforCurrentUser(user)
 }
 controller.loadListJobs = async function () {
     let currentUser = firebase.auth().currentUser.email
@@ -157,6 +159,8 @@ controller.loadJobOffers = async function(){
 
 controller.declineOffer = async function(postId){
     document.getElementById(`${postId}-container`).innerHTML = ''
+    console.log(model.inforCurrentUser.id);
+    
     await firebase
         .firestore()
         .collection('users')
@@ -171,6 +175,7 @@ controller.acceptOffer = async function(postId){
     document.getElementById(`${postId}-decline`).outerHTML = ''
     document.getElementById(`${postId}-pending`).innerHTML = 'Pending'
 
+    console.log(model.inforCurrentUser.id);
 
     await firebase
         .firestore()
@@ -202,7 +207,7 @@ controller.loadPostedJobs = async function(){
     model.savepostedJobs(jobsList)
 }
 
-controller.showJobApplications = async function(){
+controller.loadJobApplications = async function(){
     let currentUser = firebase.auth().currentUser.email
     let appliedJobsList = await firebase
         .firestore()
@@ -322,6 +327,74 @@ controller.jobDone = async function(postId){
     }
     
 }   
+
+controller.setupDatabaseChangeJobOffers = async function(){
+    let isFirstRun = true
+    firebase
+        .firestore()
+        .collection('users')
+        .onSnapshot(async function(snapshot){
+            if(isFirstRun){
+                isFirstRun = false
+                return
+            }
+            let docChanges = snapshot.docChanges()
+            for(let docChange of docChanges){
+                if(docChange.type === 'modified'){
+                    let doc = docChange.doc
+                    let data = transformDoc(doc)  
+                    console.log(data)
+                    
+                    if(`${model.inforCurrentUser.permissionUser}` === 'employee'){
+                        console.log('aloalo');
+                        await controller.loadInforUser()
+                        await controller.loadJobOffers()
+                        await controller.loadJobApplications()
+
+                        if(view.currentTab === 'jobOffers'){
+                            document.getElementById('job-offers-container').innerHTML = ''
+                            view.showJobOffers()
+                            view.showPendingJobs()
+                            view.showJobsDone()
+                        }
+                    }     
+                } 
+            }
+            
+        })
+}
+
+controller.setupDatabaseChangeJobApply = async function(){
+    let isFirstRun = true
+    firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .onSnapshot(async function(snapshot){
+            if(isFirstRun){
+                isFirstRun = false
+                return
+            }
+            let docChanges = snapshot.docChanges()
+            for(let docChange of docChanges){
+                if(docChange.type === 'modified'){
+                    let doc = docChange.doc
+                    let data = transformDoc(doc)  
+                    console.log(data)
+                    
+                    if(`${model.inforCurrentUser.permissionUser}` === 'employer'){
+                        await controller.loadPostedJobs()
+                        console.log(model.postedJobs);
+                        
+                        if(view.currentTab === 'postedJobs'){
+                            document.getElementById('posted-jobs-list-container').innerHTML =''
+                            view.showPostedJobs()
+                        }
+                    }     
+                } 
+            }
+            
+        })
+}
 
 function transformDocs(docs) {
     let datas = []
