@@ -175,6 +175,7 @@ view.showComponents = function (name){
             let app = document.getElementById('app');
             app.innerHTML = components.jobSeeker;
             controller.loadListJobs()
+            controller.loadJobOffers()
             view.displayInforUser()
 
             document.getElementById('menu-btn').innerHTML = `
@@ -220,7 +221,9 @@ view.showComponents = function (name){
             }
             function jobOfferBtnClickHandler(){
                 document.getElementById('main-content').innerHTML = components.jobOffers
-                controller.showJobOffers()
+                // controller.loadJobOffers()
+                view.showJobOffers()
+
             }
 
             break;
@@ -230,6 +233,62 @@ view.showComponents = function (name){
     
         default:
             break;
+    }
+}
+
+view.showJobOffers = function(){
+    for(let job of model.listJobOffers){
+        let html = `
+    <div class="job-offers-detail-container" id="${job.id}-container">
+        <div class="job-offers-detail-container-2">
+            <div class="job-offers-detail-left">
+                <a href="#">${job.postOwner}</a>
+            </div>
+            
+            <div class="job-offers-detail-center">
+                <div class="job-detail-wrapper">
+                    <span>Loại CV:</span>
+                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Địa chỉ:</span>
+                    <div class="job-detail" id="address">${job.address}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Lương</span>
+                    <div class="job-detail" id="salary">${job.salary}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Thời gian:</span>
+                    <div class="job-detail" id="time">${job.time}</div>
+                </div>
+                <div class="job-detail-wrapper">
+                    <span>Mô tả công việc:</span>
+                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                </div>
+                    
+                
+            </div>
+            <button class="btn btn-success" id="${job.id}-accept">Accept</button>
+            <button class="btn btn-danger" id="${job.id}-decline">Decline</button>
+            <div id="${job.id}-pending"></div>
+
+        </div>    
+    </div>`
+
+    document.getElementById('job-offers-container').innerHTML += html
+    }
+    for(let job of model.listJobOffers){
+        document.getElementById(`${job.id}-accept`).onclick = acceptOfferClickHandler;
+        document.getElementById(`${job.id}-decline`).onclick = declineOfferClickHandler;
+
+        function acceptOfferClickHandler(){
+            controller.acceptOffer(job.id)
+        }
+
+        function declineOfferClickHandler(){
+            controller.declineOffer(job.id)
+        }
     }
 }
 
@@ -365,9 +424,6 @@ view.showListEmployees = function () {
     }
 }
 
-view.showJobOffers = function(){
-    
-}
 
 view.showPostedJobs = function(){
     for (let job of model.postedJobs) {
@@ -405,7 +461,9 @@ view.showPostedJobs = function(){
                                     
                                 
                             </div>
-                            <button class="btn btn-danger" id="${job.id}">Delete</button>
+                            <button class="btn btn-danger" id="${job.id}-delete">Delete</button>
+                            <button class="btn btn-success" id="${job.id}-done">Done</button>
+
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
         for (let employee of job.applications){
@@ -417,7 +475,7 @@ view.showPostedJobs = function(){
     }
 
     for(let job of model.postedJobs){
-        document.getElementById(job.id).onclick = jobDeleteClickHandler
+        document.getElementById(`${job.id}-delete`).onclick = jobDeleteClickHandler
         function jobDeleteClickHandler(){            
             controller.deletePostedJob(job.id)
             document.getElementById(`${job.id}-container`).outerHTML = ''

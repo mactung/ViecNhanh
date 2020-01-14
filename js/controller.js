@@ -118,7 +118,7 @@ controller.submitJobOffer = async function(userId,postId){
         })
 }
 
-controller.showJobOffers = async function(){
+controller.loadJobOffers = async function(){
     let jobsList = []
     for(let offer of model.inforCurrentUser.jobOffers){
         let data = await firebase
@@ -126,52 +126,36 @@ controller.showJobOffers = async function(){
             .collection('postFindEmployee')
             .doc(offer)
             .get()
-        
         job = transformDoc(data)
         jobsList.push(job)
-    }
-    console.log(jobsList);
-    
-    for(let job of jobsList){
-        let html = `
-        <div class="job-offers-detail-container" id="${job.id}-container">
-        <div class="job-offers-detail-container-2">
-            <div class="job-offers-detail-left">
-                <a href="#">${job.postOwner}</a>
-            </div>
-            
-            <div class="job-offers-detail-center">
-                <div class="job-detail-wrapper">
-                    <span>Loại CV:</span>
-                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
-                </div>
-                <div class="job-detail-wrapper">
-                    <span>Địa chỉ:</span>
-                    <div class="job-detail" id="address">${job.address}</div>
-                </div>
-                <div class="job-detail-wrapper">
-                    <span>Lương</span>
-                    <div class="job-detail" id="salary">${job.salary}</div>
-                </div>
-                <div class="job-detail-wrapper">
-                    <span>Thời gian:</span>
-                    <div class="job-detail" id="time">${job.time}</div>
-                </div>
-                <div class="job-detail-wrapper">
-                    <span>Mô tả công việc:</span>
-                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
-                </div>
-                    
-                
-            </div>
-            <button class="btn btn-success" id="${job.id}">Accept</button>
-            <button class="btn btn-danger" id="${job.id}">Decline</button>
+    }    
+    model.saveListJobOffers(jobsList);
+}
 
-            
-    </div>`
-    document.getElementById('job-offers-container').innerHTML += html
-    }
-        
+controller.declineOffer = async function(postId){
+    document.getElementById(`${postId}-container`).innerHTML = ''
+    await firebase
+        .firestore()
+        .collection('users')
+        .doc(model.inforCurrentUser.id)
+        .update({
+            jobOffers: firebase.firestore.FieldValue.arrayRemove(postId)
+        })
+}
+
+controller.acceptOffer = async function(postId){
+    document.getElementById(`${postId}-accept`).outerHTML = ''
+    document.getElementById(`${postId}-decline`).outerHTML = ''
+    document.getElementById(`${postId}-pending`).innerHTML = 'Pending'
+
+
+    await firebase
+        .firestore()
+        .collection('users')
+        .doc(model.inforCurrentUser.id)
+        .update({
+            jobsPending: firebase.firestore.FieldValue.arrayUnion(postId)
+        })
 }
 
 controller.loadPostedJobs = async function(){
@@ -290,12 +274,31 @@ controller.cancelJobApplying = async function (idPost, emailUserCancel){
 //         })
 // }
 
-controller.deletePostedJob = async function(id){
+controller.deletePostedJob = async function(postId){
     await firebase
         .firestore()
         .collection('postFindEmployee')
-        .doc(id)
+        .doc(postId)
         .delete()
+        
+    let getEmployee = await firebase
+        .firestore()
+        .collection('users')
+        .where('jobOffers','array-contains',postId)
+        .get()
+    let docs = getEmployee.docs
+    let listEmployees = transformDocs(docs)
+
+    for(let employee of listEmployees){
+        await firebase
+            .firestore()
+            .collection('users')
+            .doc(employee.id)
+            .update({
+                jobOffers: firebase.firestore.FieldValue.arrayRemove(postId)
+            })
+    }
+    
 }
 
 function transformDocs(docs) {
@@ -312,3 +315,4 @@ function transformDoc(doc) {
     data.id = doc.id
     return data
 }
+
