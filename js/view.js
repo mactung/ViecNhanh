@@ -21,8 +21,6 @@ view.showComponents = function (name){
                 view.showComponents('login')
             }
 
-
-
             function employerRegisterBtnClickHandler(){
                 view.showComponents('employerRegister');
             }
@@ -38,6 +36,14 @@ view.showComponents = function (name){
             app.innerHTML = components.jobSeekerRegister;
             let formRegister = document.getElementById('form-register');
             formRegister.onsubmit = registerSubmitHandler;
+
+            let changeToLoginPageBtn = document.getElementById('register-link')
+            changeToLoginPageBtn.onclick = changeToLoginPageBtnHandler
+
+            function changeToLoginPageBtnHandler(event){
+                event.preventDefault()
+                view.showComponents('login')
+            }
 
             function registerSubmitHandler (event){
                 event.preventDefault();
@@ -77,6 +83,13 @@ view.showComponents = function (name){
             let registerSubmitBtn = document.getElementById('register-submit-btn');
             registerSubmitBtn.onclick = registerSubmitHandler;
 
+            let changeToLoginPageBtn = document.getElementById('register-link')
+            changeToLoginPageBtn.onclick = changeToLoginPageBtnHandler
+
+            function changeToLoginPageBtnHandler(event){
+                event.preventDefault()
+                view.showComponents('login')
+            }
             function registerSubmitHandler (event){
                 event.preventDefault();
                 
@@ -415,6 +428,7 @@ view.showJobOffers = function(){
 
 view.showListJobs = function(){
     for (let job of model.listJobs) {
+
         let textButton = 'Apply';
         let btnClass = 'btn-primary'
         if(job.applications.includes(firebase.auth().currentUser.email)){
@@ -735,7 +749,7 @@ view.postJobHandler = function(){
     let formPost = document.getElementById('form-post-job')
     formPost.onsubmit = submitFormPostHandler
 
-    function submitFormPostHandler(e) {
+    async function submitFormPostHandler(e) {
         let currentUser = firebase.auth().currentUser.email
         e.preventDefault()
         dataPost = {
@@ -749,7 +763,8 @@ view.postJobHandler = function(){
             offersAccepted: [],
             status : 'undone'
         }
-        controller.addJob(dataPost)
+        await controller.addJob(dataPost)
+        await controller.loadPostedJobs()
     }
 }
 view.displayInforUser = function () {

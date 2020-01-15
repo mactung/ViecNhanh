@@ -71,7 +71,6 @@ controller.loadInforUser = async function() {
     // model.saveInforCurrentUser(user)
 }
 controller.loadListJobs = async function () {
-    let currentUser = firebase.auth().currentUser.email
     let currentJobsList = await firebase
         .firestore()
         .collection('postFindEmployee')
@@ -79,9 +78,12 @@ controller.loadListJobs = async function () {
 
     let docs = currentJobsList.docs
     let listJobs = transformDocs(docs)
-
+    console.log('new list job');
+    
     model.saveListJobs(listJobs)
-    view.showListJobs()
+    if(view.currentTab === 'findJob'){
+        view.showListJobs()
+    }
 }
 
 controller.loadEmployees = async function () {
@@ -373,10 +375,10 @@ controller.setupDatabaseChangeJobOffers = async function(){
                     console.log(data)
                     
                     if(`${model.inforCurrentUser.permissionUser}` === 'employee'){
-                        console.log('aloalo');
                         await controller.loadInforUser()
                         await controller.loadJobOffers()
                         await controller.loadJobApplications()
+                        
 
                         if(view.currentTab === 'jobOffers'){
                             document.getElementById('job-offers-container').innerHTML = ''
@@ -420,7 +422,7 @@ controller.setupDatabaseChangeJobApply = async function(){
                             document.getElementById('posted-jobs-list-container').innerHTML =''
                             view.showPostedJobs()
                         }
-                    }     
+                    } 
                 } 
             }
             

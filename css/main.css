@@ -166,7 +166,17 @@ select{
 
 
 /* welcome page */
+.logo{
+    padding: 5px;
+    align-self: center;
+}
 
+.logo>*{
+    margin-left: 20px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+}
 
 .main-register {
     height: calc(100vh - 100px);
