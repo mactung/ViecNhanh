@@ -134,8 +134,10 @@ controller.loadJobOffers = async function(){
             .collection('postFindEmployee')
             .doc(offer)
             .get()
+            console.log(data);
         job = transformDoc(data)
         jobsList.push(job)
+        
     }    
     for(let offer of model.inforCurrentUser.jobsPending){
         let data = await firebase
@@ -213,15 +215,18 @@ controller.loadPostedJobs = async function(){
 }
 
 controller.loadJobApplications = async function(){
-    let currentUser = firebase.auth().currentUser.email
-    let appliedJobsList = await firebase
-        .firestore()
-        .collection('postFindEmployee')
-        .where('applications','array-contains',currentUser)
-        .get()
-    let docs = appliedJobsList.docs
-    let jobsList = transformDocs(docs)
-    model.saveAppliedJobs(jobsList)
+    let jobsApply = []
+    for(let offer of model.inforCurrentUser.jobApply){
+        let data = await firebase
+            .firestore()
+            .collection('postFindEmployee')
+            .doc(offer)
+            .get()
+            console.log(data);
+        job = transformDoc(data)
+        jobsApply.push(job)    
+    }    
+    model.saveAppliedJobs(jobsApply)
 }
 
 
@@ -330,6 +335,23 @@ controller.jobDone = async function(postId){
                 jobOffers: firebase.firestore.FieldValue.arrayRemove(postId),
             })
     }
+
+    let employeeApplying = await firebase
+        .firestore()
+        .collection('users')
+        .where('jobApply', 'array-contains', postId)
+        .get()
+    let docs2 = employeeApplying.docs
+    let listEmployees3 = transformDocs(docs2)
+    for(let employee of listEmployees3){
+        await firebase
+            .firestore()
+            .collection('users')
+            .doc(employee.id)
+            .update({
+                jobApply: firebase.firestore.FieldValue.arrayRemove(postId),
+            })
+    }
     
 }   
 
@@ -361,6 +383,10 @@ controller.setupDatabaseChangeJobOffers = async function(){
                             view.showJobOffers()
                             view.showPendingJobs()
                             view.showJobsDone()
+                        }
+                        if(view.currentTab === 'jobApply'){
+                            document.getElementById('applied-jobs-list-container').innerHTML = ''
+                            view.showAppliedJobs()
                         }
                     }     
                 } 
