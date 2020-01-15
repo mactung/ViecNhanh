@@ -32,7 +32,7 @@ components.welcomePage = `
             </div>
             
             <div id="already-have-account-btn">Already have an account? Sign in</div>
-            
+
         </div>
         <div id="footer">
             <span>About Us</span>
@@ -191,20 +191,18 @@ components.jobSeekerRegister = `
             `
 
 components.logIn = `
-<div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
-          <div class="card-body">
+
+          <div class="card-signin">
             <h5 class="card-title text-center">Sign In</h5>
             <form id="log-in-form" class="form-signin">
               <div class="form-label-group">
                 <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputEmail">Email address</label>
+                
               </div>
 
               <div class="form-label-group">
                 <input type="password" id="password" class="form-control" placeholder="Password" required>
-                <label for="inputPassword">Password</label>
+                
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
@@ -212,14 +210,10 @@ components.logIn = `
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-              <hr class="my-4">
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+              
             </form>
           </div>
-        </div>
-      </div>
-    </div>
+        
 `
 
 components.asideLeft = `<div  id="aside-left">

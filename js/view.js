@@ -272,39 +272,41 @@ view.showComponents = function (name){
 view.showJobsDone = function(){
     for(let job of model.listJobsDone){
         let html = `
-    <div class="job-offers-detail-container" id="${job.id}-container">
-        <div class="job-offers-detail-container-2">
-            <div class="job-offers-detail-left">
+    <div class="details-wrapper" id="${job.id}-container">
+        
+            <div class="details-left">
                 <a href="#">${job.postOwner}</a>
             </div>
             
-            <div class="job-offers-detail-center">
-                <div class="job-detail-wrapper">
+            <div class="details-center">
+                <div class="detail-inline-wrapper">
                     <span>Loại CV:</span>
-                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                    <span id="jobTitle">${job.jobTitle}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Địa chỉ:</span>
-                    <div class="job-detail" id="address">${job.address}</div>
+                    <span  id="address">${job.address}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Lương</span>
-                    <div class="job-detail" id="salary">${job.salary}</div>
+                    <span id="salary">${job.salary}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Thời gian:</span>
-                    <div class="job-detail" id="time">${job.time}</div>
+                    <span id="time">${job.time}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Mô tả công việc:</span>
-                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                    <span id="jobDescription">${job.jobDescription}</span>
                 </div>
                     
                 
             </div>
+            <div class="details-right">
                 <div id="${job.id}-pending">Done</div>
                 <button class="btn btn-danger">Delete</button>
-        </div>    
+            </div>
+          
     </div>`
 
     document.getElementById('job-offers-container').innerHTML += html
@@ -321,25 +323,25 @@ view.showPendingJobs = function(){
             </div>
             
             <div class="job-offers-detail-center">
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Loại CV:</span>
-                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                    <span id="jobTitle">${job.jobTitle}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Địa chỉ:</span>
-                    <div class="job-detail" id="address">${job.address}</div>
+                    <span  id="address">${job.address}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Lương</span>
-                    <div class="job-detail" id="salary">${job.salary}</div>
+                    <span  id="salary">${job.salary}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Thời gian:</span>
-                    <div class="job-detail" id="time">${job.time}</div>
+                    <span  id="time">${job.time}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Mô tả công việc:</span>
-                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                    <span  id="jobDescription">${job.jobDescription}</span>
                 </div>
                     
                 
@@ -356,40 +358,40 @@ view.showPendingJobs = function(){
 view.showJobOffers = function(){
     for(let job of model.listJobOffers){
         let html = `
-    <div class="job-offers-detail-container" id="${job.id}-container">
-        <div class="job-offers-detail-container-2">
-            <div class="job-offers-detail-left">
+    <div class="details-wrapper" id="${job.id}-container">
+        
+            <div class="details-left">
                 <a href="#">${job.postOwner}</a>
             </div>
             
-            <div class="job-offers-detail-center">
-                <div class="job-detail-wrapper">
+            <div class="details-center">
+                <div class="detail-inline-wrapper">
                     <span>Loại CV:</span>
-                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                    <span  id="jobTitle">${job.jobTitle}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Địa chỉ:</span>
-                    <div class="job-detail" id="address">${job.address}</div>
+                    <span id="address">${job.address}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Lương</span>
-                    <div class="job-detail" id="salary">${job.salary}</div>
+                    <span id="salary">${job.salary}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Thời gian:</span>
-                    <div class="job-detail" id="time">${job.time}</div>
+                    <span id="time">${job.time}</span>
                 </div>
-                <div class="job-detail-wrapper">
+                <div class="detail-inline-wrapper">
                     <span>Mô tả công việc:</span>
-                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                    <span  id="jobDescription">${job.jobDescription}</span>
                 </div>
-                    
-                
             </div>
+            <div class="details-right">
                 <button class="btn btn-success" id="${job.id}-accept" onclick="controller.acceptOffer('${job.id}')">Accept</button>
                 <button class="btn btn-danger" id="${job.id}-decline" onclick="controller.declineOffer('${job.id}')">Decline</button>
                 <div id="${job.id}-pending"></div>
-        </div>    
+            </div>
+          
     </div>`
 
     document.getElementById('job-offers-container').innerHTML += html
@@ -420,34 +422,37 @@ view.showListJobs = function(){
             btnClass = 'btn-info'
         }
         let html = `
-        <div class="detail-wrapper" >
-                        
+        <div class="details-wrapper" >
+            <div class="details-left">
+                <a href="#">${job.postOwner}</a>
+            </div>
+            <div class="details-center">
+                <div class="detail-inline-wrapper">
+                    <span>Loại CV:</span>
+                    <span  id="jobTitle">${job.jobTitle}</span>
+                </div>
+                <div class="detail-inline-wrapper">
+                    <span>Địa chỉ:</span>
+                    <span  id="address">${job.address}</span>
+                </div>
+                <div class="detail-inline-wrapper">
+                    <span>Lương</span>
+                    <span  id="salary">${job.salary}</span>
+                </div>
+                <div class="detail-inline-wrapper">
+                    <span>Thời gian:</span>
+                    <span id="time">${job.time}</span>
+                </div>
+                <div class="detail-inline-wrapper">
+                    <span>Mo ta cong viec:</span>
+                    <span id="jobDescription">${job.jobDescription}</span>
+                </div>
+            </div>
+            <div class="details-right">
+                <button class="btn ${btnClass}" id="${job.id}">${textButton}</button>
+            </div>
                             
-                            <a href="#">${job.postOwner}</a>
-                            <div class="detail-inline-wrapper">
-                                <span>Loại CV:</span>
-                                <span  id="jobTitle">${job.jobTitle}</span>
-                            </div>
-                            <div class="detail-inline-wrapper">
-                                <span>Địa chỉ:</span>
-                                <span  id="address">${job.address}</span>
-                            </div>
-                            <div class="detail-inline-wrapper">
-                                <span>Lương</span>
-                                <div  id="salary">${job.salary}</div>
-                            </div>
-                            <div class="detail-inline-wrapper">
-                                <span>Thời gian:</span>
-                                <span id="time">${job.time}</span>
-                            </div>
-                            <div class="detail-inline-wrapper">
-                                <span>Mo ta cong viec:</span>
-                                <span id="jobDescription">${job.jobDescription}</span>
-                            </div>
-                            
-                            <button class="btn ${btnClass}" id="${job.id}">${textButton}</button>
-                            
-                    </div>`
+        </div>`
 
                     
         document.getElementById('jobs-list-container').innerHTML += html
@@ -477,35 +482,37 @@ view.showListJobs = function(){
 view.showAppliedJobs = function(){
     for(let job of model.appliedJobs){
         let html = `
-        <div class="list-container" id="${job.id}-container">
-                        <div class="applied-job-detail-container-2">
-                            <div class="applied-job-detail-left">
+        <div class="details-wrapper" id="${job.id}-container">
+                       
+                            <div class="details-left">
                                 <a href="#">${job.postOwner}</a>
                             </div>
                             
-                            <div class="applied-job-detail-center">
-                                <div class="job-detail-wrapper">
+                            <div class="details-center">
+                                <div class="detail-inline-wrapper">
                                     <span>Loại CV:</span>
-                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                    <span  id="jobTitle">${job.jobTitle}</span>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Địa chỉ:</span>
-                                    <div class="job-detail" id="address">${job.address}</div>
+                                    <span  id="address">${job.address}</span>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Lương</span>
-                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                    <span id="salary">${job.salary}</span>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Thời gian:</span>
-                                    <div class="job-detail" id="time">${job.time}</div>
+                                    <span  id="time">${job.time}</span>
                                 </div>
-                                <div class="job-detail-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Mô tả công việc:</span>
-                                    <div class="job-detail" id="time">${job.jobDescription}</div>
+                                    <span  id="jobDescription">${job.jobDescription}</span>
                                 </div>
                             </div>
-                            <button class="btn btn-danger" id="${job.id}")">Cancel</button>
+                            <div class="details-right">
+                            <button class="btn btn-info" id="${job.id}")">Cancel</button>
+                            </div>
                     </div>`
         
         document.getElementById('applied-jobs-list-container').innerHTML += html
@@ -524,44 +531,47 @@ view.showListEmployees = function () {
     
     for (let employee of model.listEmployees) {
         let html = `
-                    <div class="detail-wrapper">
-                            <div class="employees-detail-left">
-                                <div class="personal-info-wrapper">
+                    <div class="details-wrapper">
+                            <div class="details-left">
+                                <div class="detail-inline-wrapper">
                                     <span>Họ và tên:</span>
-                                    <div class="personal-info-detail" id="jobType">${employee.fullName}</div>
+                                    <span id="jobType">${employee.fullName}</span>
                                 </div>
-                                <div class="personal-info-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>SĐT:</span>
-                                    <div class="personal-info-detail" id="address">${employee.mobileNumber}</div>
+                                    <span id="address">${employee.mobileNumber}</span>
                                 </div>
-                                <div class="personal-info-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Ngày sinh: </span>
-                                    <div class="personal-info-detail" id="salary">${employee.dateOfBirth}</div>
+                                    <span  id="salary">${employee.dateOfBirth}</span>
                                 </div>
-                                <div class="personal-info-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Email: </span>
-                                    <div class="personal-info-detail" id="date">${employee.email}</div>
+                                    <span  id="date">${employee.email}</span>
                                 </div>
                             </div>
-                            <div class="employees-detail-center">
-                                <div class="personal-info-wrapper">
+                            <div class="details-center">
+                                <div class="detail-inline-wrapper">
                                     <span>Giới tính: </span>
-                                    <div class="personal-info-detail" id="date">${employee.gender}</div>
+                                    <span  id="date">${employee.gender}</span>
                                 </div>
-                                <div class="personal-info-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Địa chỉ: </span>
-                                    <div class="personal-info-detail" id="date">${employee.city}</div>
+                                    <span  id="date">${employee.city}</span>
                                 </div>
-                                <div class="personal-info-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Job Tags: </span>
-                                    <div class="personal-info-detail" id="date">abc</div>
+                                    <span id="date">abc</span>
                                 </div>
-                                <div class="personal-info-wrapper">
+                                <div class="detail-inline-wrapper">
                                     <span>Rate</span>
-                                    <div class="personal-info-detail" id="date">${employee.rate}</div>
+                                    <span  id="date">${employee.rate}</span>
                                 </div>
-                            
+                            </div>
+                            <div class="details-right">
                             <button class="btn btn-info" id="${employee.id}">Choose</button>
+                            </div>
+                            
                     </div>`
         document.getElementById('employees-list-container').innerHTML += html
     }
@@ -594,43 +604,45 @@ view.showListEmployees = function () {
 view.showPostedJobs = function(){
     for (let job of model.postedJobs) {
         let html = `
-        <div class="posted-job-detail-container" id="${job.id}-container">
-                        <div class="posted-job-detail-container-2">
-                            <div class="posted-job-detail-left">
+        <div class="details-wrapper" id="${job.id}-container">
+                        
+                            <div class="details-left">
                                 <a href="#">${job.postOwner}</a>
                             </div>
                             
-                            <div class="posted-job-detail-center">
+                            <div class="details-center">
                                 <div class="detail-inline-wrapper">
                                     <span>Loại CV:</span>
-                                    <div class="job-detail" id="jobTitle">${job.jobTitle}</div>
+                                    <span id="jobTitle">${job.jobTitle}</span>
                                 </div>
                                 <div class="detail-inline-wrapper">
                                     <span>Địa chỉ:</span>
-                                    <div class="job-detail" id="address">${job.address}</div>
+                                    <spanid="address">${job.address}</spanid="address">
                                 </div>
                                 <div class="detail-inline-wrapper">
                                     <span>Lương</span>
-                                    <div class="job-detail" id="salary">${job.salary}</div>
+                                    <spanid="salary">${job.salary}</span>
                                 </div>
                                 <div class="detail-inline-wrapper">
                                     <span>Thời gian:</span>
-                                    <div class="job-detail" id="time">${job.time}</div>
+                                    <span class="job-detail" id="time">${job.time}</span>
                                 </div>
                                 <div class="detail-inline-wrapper">
                                     <span>Mô tả công việc:</span>
-                                    <div class="job-detail" id="jobDescription">${job.jobDescription}</div>
+                                    <span  id="jobDescription">${job.jobDescription}</span>
                                 </div>
-                                
-                                <ul id="${job.id}-list-employee-applying">        
-                                </ul>
-                                    
+                                <div class="list-employee-applying">
+                                <span>Những người đang ứng tuyển:</span>
+                                    <ul id="${job.id}-list-employee-applying">        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="details-left">
+                            </div>      
+                                <div id="${job.id}-button-options"> </div>
+                                <div id="${job.id}-job-status"></div>
                                 
                             </div>
-                            <div id="${job.id}-button-options">
-                            
-                            </div>
-                            <div id="${job.id}-job-status"></div>
                     </div>`
         document.getElementById('posted-jobs-list-container').innerHTML += html
 

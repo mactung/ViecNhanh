@@ -8,6 +8,11 @@ controller.register = async function(registerInfor){
         fullName : lastName + fisrtName,
         comments: [],
         rate: 4,
+        jobApply : [],
+        jobOffers : [],
+        jobDone: [],
+        jobsPending : [],
+        job: []
         }
 
 
