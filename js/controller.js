@@ -122,7 +122,7 @@ controller.submitJobOffer = async function(userId,postId){
         .collection('users')
         .doc(userId)
         .update({
-            jobOffers: firebase.firestore.FieldValue.arrayUnion(postId)
+            c
         })
 }
 
@@ -238,7 +238,7 @@ controller.applyJob = async function(idPost, emailUserApply){
         .collection('postFindEmployee')
         .doc(idPost)
         .update({
-            applications: firebase.firestore.FieldValue.arrayUnion(emailUserApply)
+            applications: firebase.firestore.FieldValue.arrayUnion(model.inforCurrent.id)
         })
     await firebase.firestore()
             .collection('users')
@@ -395,6 +395,37 @@ controller.setupDatabaseChangeJobOffers = async function(){
             }
             
         })
+}
+
+controller.acceptApplications = async function(postId,userEmail){
+    let data = await firebase
+        .firestore()
+        .collection('postFindEmployee')
+        .doc(postId)
+        .get()
+    let job = transformDoc(data)
+    for(let user of job.applications){
+        if(userEmail === user){
+            let data2 = await firebase
+                .firestore()
+                .collection('users')
+                .where('email', '==', userEmail)
+                .get()
+            
+            let infoUser = transformDocs(data2.docs)
+            console.log(infoUser);
+            
+            await firebase
+                .firestore()
+                .collection('users')
+                .doc(infoUser[0].id)
+                .update({
+                    jobApply: firebase.firestore.FieldValue.arrayRemove(postId),
+                    jobsPending: firebase.firestore.FieldValue.arrayUnion(postId)
+                })
+        }
+    }   
+    console.log(userEmail)
 }
 
 controller.setupDatabaseChangeJobApply = async function(){

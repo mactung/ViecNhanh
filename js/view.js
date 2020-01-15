@@ -251,7 +251,7 @@ view.showComponents = function (name){
             function findJobBtnClickHandler() {
                 view.currentTab ='findJob'
                 document.getElementById('main-content').innerHTML = components.listJobs;
-                view.showListJobs()
+                controller.loadListJobs()
             }
             function profileEmployeeBtnClickHandler() {
                 view.currentTab ='employeeProfile'
@@ -662,8 +662,8 @@ view.showPostedJobs = function(){
 
         for (let employee of job.applications){
             document.getElementById(`${job.id}-list-employee-applying`).innerHTML += `<li>
-            <span>${employee}</span>
-            <button>Accept</button>
+            <span id="${job.id}-list-employee">${employee}</span>
+            <button id="${job.id}-accept-applications">Accept</button>
             </li>`
         }    
     }
@@ -682,7 +682,12 @@ view.showPostedJobs = function(){
         if(job.status === 'undone'){
             document.getElementById(`${job.id}-delete`).onclick = jobDeleteClickHandler
             document.getElementById(`${job.id}-done`).onclick = jobDoneClickHandler
-
+            document.getElementById(`${job.id}-accept-applications`).onclick = acceptApplicationsClickHandler
+            
+            function acceptApplicationsClickHandler(){
+                let userEmail = document.getElementById(`${job.id}-list-employee`).innerHTML
+                controller.acceptApplications(job.id,userEmail)
+            }
             function jobDeleteClickHandler(){            
                 controller.deletePostedJob(job.id)
                 document.getElementById(`${job.id}-container`).outerHTML = ''
